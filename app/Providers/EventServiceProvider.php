@@ -32,8 +32,6 @@ class EventServiceProvider extends ServiceProvider
 		],
 		// BUSINESS EVENTS
 		BusinessCreated::class => [
-			\App\Listeners\BusinessCreateGlobalBlock::class,
-			\App\Listeners\BusinessCreateGlobalFloor::class,
 		],
 		// UNIT EVENTS
 		UnitCreated::class => [
