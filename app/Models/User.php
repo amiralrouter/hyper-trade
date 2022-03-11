@@ -23,6 +23,8 @@ class User extends Authenticatable
 		'password' => '', // [type:string] Password
 
 		'language_id' => 0, // [type:integer, class:Language] Language ID
+
+		'related_with_all_units' => false, // [type:boolean] Related with all units
 	];
 
 	protected $casts = [
@@ -32,6 +34,7 @@ class User extends Authenticatable
 		'username' => 'string',
 		'password' => 'string',
 		'language_id' => 'integer',
+		'related_with_all_units' => 'boolean',
 	];
 
 	protected $appends = [];
@@ -44,28 +47,6 @@ class User extends Authenticatable
 		'created' => \App\Events\UserCreated::class,
 		'deleting' => \App\Events\UserDeleting::class,
 	];
-	// public static function boot(): void
-	// {
-	// 	parent::boot();
-
-	// 	static::creating(function (self $model): void {
-	// 		$model->password = bcrypt($model->password);
-	// 	});
-
-	// 	static::created(function (self $model): void {
-	// 		$user_telegram = new UserTelegram();
-	// 		$user_telegram->user_id = $model->id;
-	// 		$user_telegram->chat_id = 0;
-	// 		$user_telegram->save();
-	// 	});
-
-	// 	static::deleting(function (self $model): void {
-	// 		$user_telegram = UserTelegram::where('user_id', $model->id)->first();
-	// 		if ($user_telegram) {
-	// 			$user_telegram->delete();
-	// 		}
-	// 	});
-	// }
 
 	public function departments()
 	{

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wallets', function (Blueprint $table) {
+        Schema::create('guests', function (Blueprint $table) {
 			$table->id();
 			$table->json('namespace')->default('{}');
 			$table->json('use')->default('{}');
@@ -22,14 +22,16 @@ return new class extends Migration
 			$table->json('business_id')->default('{}');
 			$table->json('type')->default('{}');
 			$table->json('class')->default('{}');
-			$table->json('unit_id')->default('{}');
+			$table->json('language_id')->default('{}');
 			$table->json('type')->default('{}');
 			$table->json('class')->default('{}');
-			$table->json('is_active')->default('{}');
+			$table->json('fullname')->default('{}');
 			$table->json('type')->default('{}');
+			$table->json('size')->default('{}');
+			$table->json('nullable')->default('{}');
 			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->foreignId('unit_id')->constrained()->comment('Unit Type ID');
-			$table->boolean('is_active')->comment('Is Active');
+			$table->foreignId('language_id')->constrained()->comment('Language ID (Foreign key) default: 1 - English');
+			$table->string('fullname')->nullable();
 			$table->timestamps();
         });
     }
@@ -41,6 +43,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallets');
+        Schema::dropIfExists('guests');
     }
 };

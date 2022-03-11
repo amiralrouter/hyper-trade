@@ -9,14 +9,14 @@ class Language extends Model
 	protected $attributes = [
 		'name' => '', // [type:string, length:16] Language name
 		'native' => '', // [type:string, length:16] Native name
-		'code' => 'en', // [type:string, length:2] Language code
+		'locale' => 'en_US', // [type:string, length:5] Locale
 		'is_default' => false, // [type:boolean] Is default language
 	];
 
 	protected $casts = [
 		'name' => 'string',
 		'native' => 'string',
-		'code' => 'string',
+		'locale' => 'string',
 		'is_default' => 'boolean',
 	];
 

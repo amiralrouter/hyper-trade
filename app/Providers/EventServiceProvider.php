@@ -2,6 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\BusinessCreated;
+use App\Events\GuestCreated;
+use App\Events\OrderCreated;
+use App\Events\PrinterCreated;
+use App\Events\UnitCreated;
+use App\Events\UnitReset;
+use App\Events\UnitSaved;
 use App\Events\UserCreated;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -19,8 +26,39 @@ class EventServiceProvider extends ServiceProvider
 		Registered::class => [
 			SendEmailVerificationNotification::class,
 		],
+		// USER EVENTS
 		UserCreated::class => [
 			\App\Listeners\CreateUserTelegram::class,
+		],
+		// BUSINESS EVENTS
+		BusinessCreated::class => [
+			\App\Listeners\BusinessCreateGlobalBlock::class,
+			\App\Listeners\BusinessCreateGlobalFloor::class,
+		],
+		// UNIT EVENTS
+		UnitCreated::class => [
+			\App\Listeners\UnitCreatePin::class,
+			\App\Listeners\UnitCreateWallet::class,
+		],
+		UnitSaved::class => [
+			\App\Listeners\UnitSetBlock::class,
+		],
+		UnitReset::class => [
+			\App\Listeners\UnitCreatePin::class,
+			\App\Listeners\UnitDropWallet::class,
+			\App\Listeners\UnitCreateWallet::class,
+		],
+		// GUEST EVENTS
+		GuestCreated::class => [
+			\App\Listeners\GuestSetLanguage::class,
+			\App\Listeners\GuestSetFullname::class,
+		],
+		// PRINTER EVENTS
+		PrinterCreated::class => [
+			\App\Listeners\PrinterSetUuid::class,
+		],
+		// ORDER EVENTS
+		OrderCreated::class => [
 		],
 	];
 

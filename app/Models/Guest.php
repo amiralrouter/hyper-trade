@@ -3,25 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
 
-class Block extends Model
+class Guest extends Model
 {
-	use HasTranslations;
-
-	protected $translatable = [
-		'name',
-	];
-
 	protected $attributes = [
 		'business_id' => 0, // [type:integer, class:Business] Business ID
 
-		'is_global' => false, // [type:boolean] Is global
+		'language_id' => 1, // [type:integer, class:Language] Language ID (Foreign key) default: 1 - English
+
+		'fullname' => '', // [type:string, size:64, nullable:true]
 	];
 
 	protected $casts = [
 		'business_id' => 'integer',
-		'is_global' => 'boolean',
+		'language_id' => 'integer',
+		'fullname' => 'string',
 	];
 
 	protected $appends = [];
@@ -30,13 +26,12 @@ class Block extends Model
 
 	protected $hidden = [];
 
+	protected $dispatchesEvents = [
+		'created' => \App\Events\GuestCreated::class,
+	];
+
 	public function business()
 	{
 		return $this->belongsTo(Business::class);
-	}
-
-	public function floors()
-	{
-		return $this->hasMany(Floor::class);
 	}
 }
