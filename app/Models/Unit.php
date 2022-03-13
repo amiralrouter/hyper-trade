@@ -14,14 +14,14 @@ class Unit extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'block_id' => null, // [type:integer, class:Block, nullable:true] Block ID
-		'floor_id' => null, // [type:integer, class:Floor, nullable:true] Floor ID
-		'unit_type_id' => 0, // [type:integer, class:UnitType] Unit Type ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
+		'block_id' => null, // [type:integer, model:Block, nullable] Block ID
+		'floor_id' => null, // [type:integer, model:Floor, nullable] Floor ID
+		'unit_type_id' => null, // [type:integer, model:UnitType] Unit Type ID
 
 		'pin' => '', // [type:string, max:6] PIN
 
-		'wallet_id' => null, // [type:integer, class:Wallet, nullable:true] Wallet ID
+		'wallet_id' => null, // [type:integer, model:Wallet, nullable] Wallet ID
 
 		'is_active' => true, // [type:boolean] Is Active
 	];

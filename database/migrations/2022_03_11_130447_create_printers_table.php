@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('printers', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->string('name')->nullable();
-			$table->string('uuid')->nullable();
+			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
+			$table->string('name', 64)->nullable();
+			$table->string('uuid', 64)->nullable();
 			$table->timestamps();
         });
     }

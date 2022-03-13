@@ -13,8 +13,8 @@ return new class() extends Migration {
 	{
 		Schema::create('businesses', function (Blueprint $table): void {
 			$table->id();
-			$table->string('name')->nullable();
-			$table->foreignId('language_id')->constrained()->comment('Language ID (Foreign key) default: 1 - English');
+			$table->string('name', 64)->nullable();
+			$table->foreignId('language_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Language ID (Foreign key) default: 1 - English');
 			$table->timestamps();
 		});
 

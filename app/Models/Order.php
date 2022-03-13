@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'wallet_id' => 0, // [type:integer, class:Wallet] Wallet ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
+		'wallet_id' => null, // [type:integer, model:Wallet] Wallet ID
 	];
 
 	protected $casts = [

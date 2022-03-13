@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->foreignId('wallet_id')->constrained()->comment('Wallet ID');
+			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
+			$table->foreignId('wallet_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Wallet ID');
 			$table->timestamps();
 		});
     }

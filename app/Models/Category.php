@@ -16,7 +16,7 @@ class Category extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business, nullable] Business ID
 		'category_type' => CategoryType::PRODUCT, // [type:enum, enum:CategoryType, def:1] Category type
 
 		'is_active' => true, // [type:boolean] Is active

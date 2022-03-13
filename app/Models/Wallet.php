@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Wallet extends Model
 {
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'unit_id' => 0, // [type:integer, class:UnitType] Unit Type ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
+		'unit_id' => null, // [type:integer, model:UnitType] Unit Type ID
 
 		'is_active' => true, // [type:boolean] Is Active
 	];

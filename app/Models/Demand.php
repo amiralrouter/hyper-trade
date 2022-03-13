@@ -15,8 +15,8 @@ class Demand extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'category_id' => 0, // [type:integer, class:Category] Category ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
+		'category_id' => null, // [type:integer, model:Category, nullable] Category ID
 	];
 
 	protected $casts = [

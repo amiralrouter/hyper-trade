@@ -14,8 +14,8 @@ class Floor extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'block_id' => 0, // [type:integer, class:Block] Block ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
+		'block_id' => null, // [type:integer, model:Block, nullable] Block ID
 	];
 
 	protected $casts = [

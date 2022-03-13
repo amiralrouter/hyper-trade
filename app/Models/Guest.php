@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Guest extends Model
 {
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
 
-		'language_id' => 1, // [type:integer, class:Language] Language ID (Foreign key) default: 1 - English
+		'language_id' => 1, // [type:integer, model:Language] Language ID (Foreign key) default: 1 - English
 
 		'fullname' => '', // [type:string, size:64, nullable:true]
 	];

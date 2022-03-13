@@ -14,7 +14,7 @@ class Department extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
 		'is_admin_department' => false, // [type:boolean] Is admin department
 		'can_manage_units' => false, // [type:boolean] Can manage units
 	];

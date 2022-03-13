@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Entity extends Model
 {
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'order_id' => 0, // [type:integer, class:Order] Order ID
-		'product_id' => 0, // [type:integer, class:Product] Product ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
+		'order_id' => null, // [type:integer, model:Order] Order ID
+		'product_id' => null, // [type:integer, model:Product] Product ID
 
 		'price' => 0.0, // [type:float] Price
 		'quantity' => 0, // [type:integer] Quantity

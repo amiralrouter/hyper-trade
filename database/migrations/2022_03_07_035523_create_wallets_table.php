@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->foreignId('unit_id')->constrained()->comment('Unit Type ID');
+			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
+			$table->foreignId('unit_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Unit Type ID');
 			$table->boolean('is_active')->comment('Is Active');
 			$table->timestamps();
         });

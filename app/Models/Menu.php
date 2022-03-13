@@ -15,7 +15,7 @@ class Menu extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
 
 		'is_active' => true, // [type:boolean] Is active
 	];

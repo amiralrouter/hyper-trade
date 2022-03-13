@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class Migra extends Command
@@ -363,16 +364,21 @@ class Migra extends Command
 			$this->buildModelTable($parsed_model);
 			// exit;
 			// log translatable_fields
-			$this->info('Model: ' . $model['name']);
-			$this->info('Translatable fields: ' . \count($parsed_model['translatable_fields']));
-			$this->info('Translatable fields: ' . implode(', ', $parsed_model['translatable_fields']));
+			$this->warn('Model: ' . $model['name']);
+			$this->info('Model builded');
+			$this->info('Model table builded');
+			// $this->info('Translatable fields: ' . \count($parsed_model['translatable_fields']) . ' - ' . implode(', ', $parsed_model['translatable_fields']));
 
-			// log attribute_fields
-			$this->info('Attribute fields: ' . \count($parsed_model['attribute_fields']));
-			$this->info('Attribute fields: ' . implode(', ', $parsed_model['attribute_fields']));
+			// // log attribute_fields
+			// $this->info('Attribute fields: ' . \count($parsed_model['attribute_fields']) . ' - ' . implode(', ', $parsed_model['attribute_fields']));
 		}
 
-		$this->info(base_path());
+		// $this->info(base_path());
+
+		// call artisan migrate:refresh --seed --force
+		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+		$this->call('migrate:refresh', ['--seed' => true, '--force' => true]);
+		// $this->call('migrate:refresh', ['--seed' => true]);
 
 		return 0;
 	}

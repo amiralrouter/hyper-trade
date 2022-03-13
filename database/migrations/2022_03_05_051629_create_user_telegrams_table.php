@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('user_telegrams', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('user_id')->constrained()->comment('User ID');
+			$table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('User ID');
 			$table->integer('chat_id')->comment('Telegram ID of the user');
-			$table->string('verification_code')->comment('Verification code');
+			$table->string('verification_code', 8)->nullable()->comment('Verification code');
 			$table->boolean('verified')->comment('Is verified');
 			$table->timestamps();
 		});

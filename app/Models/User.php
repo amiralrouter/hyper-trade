@@ -14,7 +14,7 @@ class User extends Authenticatable
 	use Notifiable;
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
 
 		'firstname' => '', // [type:string, length:32] First name
 		'lastname' => '', // [type:string, length:32] Last name
@@ -22,7 +22,7 @@ class User extends Authenticatable
 		'username' => '', // [type:string] Username
 		'password' => '', // [type:string] Password
 
-		'language_id' => 0, // [type:integer, class:Language] Language ID
+		'language_id' => 1, // [type:integer, model:Language] Language ID
 
 		'related_with_all_units' => false, // [type:boolean] Related with all units
 	];

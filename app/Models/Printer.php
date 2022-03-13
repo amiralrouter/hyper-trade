@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Printer extends Model
 {
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
 		'name' => '', // [type:string, size:64, nullable:true]
 		'uuid' => '', // [type:string, size:64, nullable:true]
 	];

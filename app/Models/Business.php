@@ -9,7 +9,7 @@ class Business extends Model
 	protected $attributes = [
 		'name' => '', // [type:string, size:64, nullable:true]
 
-		'language_id' => 1, // [type:integer, class:Language] Language ID (Foreign key) default: 1 - English
+		'language_id' => 1, // [type:integer, model:Language] Language ID (Foreign key) default: 1 - English
 	];
 
 	protected $casts = [

@@ -23,6 +23,7 @@ class UnitCreateWallet
 		$unit = $event->unit;
 
 		$wallet = new Wallet();
+		$wallet->business_id = $unit->business_id;
 		$wallet->unit_id = $unit->id;
 		$wallet->save();
 

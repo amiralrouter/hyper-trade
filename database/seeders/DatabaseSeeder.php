@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
 		$builder = new BusinessBuilder();
 		$builder->setName('Babos Hotel');
+		$builder->setLanguageId(2);
 		$builder->setRoomCount(10);
 		$builder->setDeskCount(10);
 		$builder->build();

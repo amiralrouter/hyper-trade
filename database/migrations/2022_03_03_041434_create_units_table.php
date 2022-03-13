@@ -12,13 +12,13 @@ return new class() extends Migration {
 	{
 		Schema::create('units', function (Blueprint $table): void {
 			$table->id();
-			$table->json('name')->default('{}');
-			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->foreignId('block_id')->nullable()->constrained()->comment('Block ID');
-			$table->foreignId('floor_id')->nullable()->constrained()->comment('Floor ID');
-			$table->foreignId('unit_type_id')->constrained()->comment('Unit Type ID');
+			$table->json('name');
+			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
+			$table->foreignId('block_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Block ID');
+			$table->foreignId('floor_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Floor ID');
+			$table->foreignId('unit_type_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Unit Type ID');
 			$table->string('pin')->comment('PIN');
-			$table->foreignId('wallet_id')->nullable()->constrained()->comment('Wallet ID');
+			$table->foreignId('wallet_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Wallet ID');
 			$table->boolean('is_active')->comment('Is Active');
 			$table->timestamps();
 		});

@@ -12,10 +12,10 @@ return new class() extends Migration {
 	{
 		Schema::create('categories', function (Blueprint $table): void {
 			$table->id();
-			$table->json('name')->default('{}');
-			$table->json('description')->default('{}');
-			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->enum('int',[1, 2])->default(1)->comment('Category type');
+			$table->json('name');
+			$table->json('description');
+			$table->foreignId('business_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
+			$table->enum('category_type', [1, 2])->comment('Category type');
 			$table->boolean('is_active')->comment('Is active');
 			$table->timestamps();
 		});

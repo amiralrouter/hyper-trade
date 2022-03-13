@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
 			$table->id();
-			$table->json('name')->default('{}');
-			$table->foreignId('business_id')->constrained()->comment('Business ID');
+			$table->json('name');
+			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->timestamps();
         });
     }

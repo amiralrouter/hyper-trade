@@ -15,7 +15,7 @@ class Product extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => null, // [type:integer, model:Business] Business ID
 
 		'price' => 0.0, // [type:float] Price
 		'preparation_time' => 0, // [type:integer] Preparation time in minutes

@@ -11,6 +11,8 @@ class BusinessBuilder
 {
 	private $name;
 
+	private $language_id = 1;
+
 	private $business;
 
 	private $has_rooms = false;
@@ -26,6 +28,11 @@ class BusinessBuilder
 	public function setName($name): void
 	{
 		$this->name = $name;
+	}
+
+	public function setLanguageId($language_id): void
+	{
+		$this->language_id = $language_id;
 	}
 
 	public function setRoomCount($room_count): void
@@ -48,6 +55,7 @@ class BusinessBuilder
 	{
 		$this->business = new Business();
 		$this->business->name = $this->name;
+		$this->business->language_id = $this->language_id;
 		$this->business->save();
 	}
 
