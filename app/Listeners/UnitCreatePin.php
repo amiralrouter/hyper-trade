@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\UnitCreated;
 use App\Events\UnitReset;
 
 class UnitCreatePin
@@ -18,7 +19,7 @@ class UnitCreatePin
 	 *
 	 * @param object $event
 	 */
-	public function handle(UnitReset $event): void
+	public function handle(UnitReset|UnitCreated $event): void
 	{
 		$event->unit->pin = random_int(100000, 999999);
 		$event->unit->save();

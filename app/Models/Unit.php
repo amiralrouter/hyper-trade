@@ -15,13 +15,15 @@ class Unit extends Model
 
 	protected $attributes = [
 		'business_id' => 0, // [type:integer, class:Business] Business ID
-		'block_id' => 0, // [type:integer, class:Block] Block ID
-		'floor_id' => 0, // [type:integer, class:Floor] Floor ID
+		'block_id' => null, // [type:integer, class:Block, nullable:true] Block ID
+		'floor_id' => null, // [type:integer, class:Floor, nullable:true] Floor ID
 		'unit_type_id' => 0, // [type:integer, class:UnitType] Unit Type ID
 
 		'pin' => '', // [type:string, max:6] PIN
 
-		'wallet_id' => 0, // [type:integer, class:Wallet, nullable:true] Wallet ID
+		'wallet_id' => null, // [type:integer, class:Wallet, nullable:true] Wallet ID
+
+		'is_active' => true, // [type:boolean] Is Active
 	];
 
 	protected $casts = [
@@ -31,6 +33,7 @@ class Unit extends Model
 		'unit_type_id' => 'integer',
 		'pin' => 'string',
 		'wallet_id' => 'integer',
+		'is_active' => 'boolean',
 	];
 
 	protected $appends = [];
@@ -72,9 +75,9 @@ class Unit extends Model
 	public function users(): void
 	{
 		// get users which are related_with_all_units, or related with this unit's floor or block id
-		return $this->belongsToMany(User::class, 'user_unit')
-			->withPivot('is_primary', 'is_secondary', 'is_tertiary')
-			->withTimestamps();
+		// return $this->belongsToMany(User::class, 'user_unit')
+		// 	->withPivot('is_primary', 'is_secondary', 'is_tertiary')
+		// 	->withTimestamps();
 		// return $this->hasMany(User::class);
 	}
 

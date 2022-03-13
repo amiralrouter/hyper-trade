@@ -59,10 +59,11 @@ class BusinessBuilder
 				'name' => 'Room',
 			]);
 			for ($i = 1; $i <= $this->room_count; ++$i) {
-				$room = new Unit();
-				$room->business_id = $this->business->id;
-				$room->name = 'Room ' . $i;
-				$room->save();
+				$unit = new Unit();
+				$unit->business_id = $this->business->id;
+				$unit->unit_type_id = $unit_type->id;
+				$unit->name = 'Room ' . $i;
+				$unit->save();
 			}
 		}
 	}
@@ -75,10 +76,11 @@ class BusinessBuilder
 				'name' => 'Desk',
 			]);
 			for ($i = 1; $i <= $this->desk_count; ++$i) {
-				$desk = new Unit();
-				$desk->business_id = $this->business->id;
-				$desk->name = 'Desk ' . $i;
-				$desk->save();
+				$unit = new Unit();
+				$unit->business_id = $this->business->id;
+				$unit->unit_type_id = $unit_type->id;
+				$unit->name = 'Desk ' . $i;
+				$unit->save();
 			}
 		}
 	}

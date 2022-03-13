@@ -13,17 +13,6 @@ return new class() extends Migration {
 	{
 		Schema::create('businesses', function (Blueprint $table): void {
 			$table->id();
-			$table->json('namespace')->default('{}');
-			$table->json('use')->default('{}');
-			$table->json('class')->default('{}');
-			$table->json('protected')->default('{}');
-			$table->json('name')->default('{}');
-			$table->json('type')->default('{}');
-			$table->json('size')->default('{}');
-			$table->json('nullable')->default('{}');
-			$table->json('language_id')->default('{}');
-			$table->json('type')->default('{}');
-			$table->json('class')->default('{}');
 			$table->string('name')->nullable();
 			$table->foreignId('language_id')->constrained()->comment('Language ID (Foreign key) default: 1 - English');
 			$table->timestamps();

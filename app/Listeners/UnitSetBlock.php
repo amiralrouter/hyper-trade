@@ -19,7 +19,9 @@ class UnitSetBlock
 	public function handle($event): void
 	{
 		// unit set block_id from unit's floor's block_id
-		$event->unit->block_id = $event->unit->floor->block_id;
-		$event->unit->save();
+		if (null !== $event->unit->floor) {
+			$event->unit->block_id = $event->unit->floor->block_id;
+			$event->unit->save();
+		}
 	}
 }

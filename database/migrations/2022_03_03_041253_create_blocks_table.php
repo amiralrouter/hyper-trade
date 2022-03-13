@@ -14,7 +14,6 @@ return new class() extends Migration {
 			$table->id();
 			$table->json('name')->default('{}');
 			$table->foreignId('business_id')->constrained()->comment('Business ID');
-			$table->boolean('is_global')->comment('Is global');
 			$table->timestamps();
 		});
 	}

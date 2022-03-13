@@ -15,21 +15,6 @@ return new class extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
 			$table->id();
-			$table->json('namespace')->default('{}');
-			$table->json('use')->default('{}');
-			$table->json('class')->default('{}');
-			$table->json('protected')->default('{}');
-			$table->json('name')->default('{}');
-			$table->json('type')->default('{}');
-			$table->json('length')->default('{}');
-			$table->json('native')->default('{}');
-			$table->json('type')->default('{}');
-			$table->json('length')->default('{}');
-			$table->json('locale')->default('{}');
-			$table->json('type')->default('{}');
-			$table->json('length')->default('{}');
-			$table->json('is_default')->default('{}');
-			$table->json('type')->default('{}');
 			$table->string('name', 16)->comment('Language name');
 			$table->string('native', 16)->comment('Native name');
 			$table->string('locale', 5)->comment('Locale');

@@ -32,7 +32,7 @@ class Menu extends Model
 	protected $hidden = [];
 
 	public function products()
-	{ 
+	{
 		return $this->belongsToMany(Product::class);
 	}
 }

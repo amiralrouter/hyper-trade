@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('demands', function (Blueprint $table) {
 			$table->id();
+			$table->json('name')->default('{}');
+			$table->json('description')->default('{}');
 			$table->foreignId('business_id')->constrained()->comment('Business ID');
 			$table->foreignId('category_id')->constrained()->comment('Category ID');
 			$table->timestamps();

@@ -14,7 +14,7 @@ class Block extends Model
 	];
 
 	protected $attributes = [
-		'business_id' => 0, // [type:integer, class:Business] Business ID
+		'business_id' => 0, // [type:integer, model:Business, nullable:true] Business ID
 	];
 
 	protected $casts = [

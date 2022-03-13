@@ -15,13 +15,13 @@ class LanguageSeeder extends Seeder
 		Language::create([
 			'name' => 'English',
 			'native' => 'English',
-			'code' => 'en',
+			'locale' => 'en_EN',
 			'is_default' => true,
 		]);
 		Language::create([
 			'name' => 'Turkish',
 			'native' => 'Türkçe',
-			'code' => 'tr',
+			'locale' => 'tr_TR',
 			'is_default' => false,
 		]);
 	}

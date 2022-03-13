@@ -11,7 +11,7 @@ class UserTelegram extends Model
 
 		'chat_id' => 0, // [type:integer] Telegram ID of the user
 
-		'verification_code' => '', // [type:string, size:8] Verification code
+		'verification_code' => '', // [type:string, size:8, nullable] Verification code
 		'verified' => false, // [type:boolean] Is verified
 	];
 
