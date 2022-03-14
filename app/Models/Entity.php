@@ -14,6 +14,8 @@ class Entity extends Model
 		'price' => 0.0, // [type:float] Price
 		'quantity' => 0, // [type:integer] Quantity
 		'total_price' => 0.0, // [type:float] Total price
+
+		'note' => null, // [type:string, dbType:text, nullable] Note
 	];
 
 	protected $casts = [

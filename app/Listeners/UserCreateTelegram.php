@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\Events\UserCreated;
 use App\Models\UserTelegram;
 
-class CreateUserTelegram
+class UserCreateTelegram
 {
 	/**
 	 * Create the event listener.

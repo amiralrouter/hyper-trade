@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\BlockDeleting;
 use App\Events\BusinessCreated;
+use App\Events\CategoryDeleting;
+use App\Events\FloorDeleting;
 use App\Events\GuestCreated;
 use App\Events\OrderCreated;
 use App\Events\PrinterCreated;
@@ -10,6 +13,7 @@ use App\Events\UnitCreated;
 use App\Events\UnitReset;
 use App\Events\UnitSaved;
 use App\Events\UserCreated;
+use App\Events\UserDeleting;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -28,10 +32,21 @@ class EventServiceProvider extends ServiceProvider
 		],
 		// USER EVENTS
 		UserCreated::class => [
-			\App\Listeners\CreateUserTelegram::class,
+			\App\Listeners\UserCreateTelegram::class,
+		],
+		UserDeleting::class => [
+			\App\Listeners\UserDeleteTelegram::class,
 		],
 		// BUSINESS EVENTS
 		BusinessCreated::class => [
+		],
+		// BLOCK EVENTS
+		BlockDeleting::class => [
+			\App\Listeners\BlockDeleteFloors::class,
+		],
+		// FLOOR EVENTS
+		FloorDeleting::class => [
+			\App\Listeners\FloorDerelictUnits::class,
 		],
 		// UNIT EVENTS
 		UnitCreated::class => [
@@ -53,7 +68,12 @@ class EventServiceProvider extends ServiceProvider
 		],
 		// PRINTER EVENTS
 		PrinterCreated::class => [
-			\App\Listeners\PrinterSetUuid::class,
+			\App\Listeners\PrinterCreateUuid::class,
+		],
+		// CATEGORY EVENTS
+		CategoryDeleting::class => [
+			\App\Listeners\CategoryDerelictProducts::class,
+			\App\Listeners\CategoryDerelictDemands::class,
 		],
 		// ORDER EVENTS
 		OrderCreated::class => [

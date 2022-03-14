@@ -27,6 +27,10 @@ class Block extends Model
 
 	protected $hidden = [];
 
+	protected $dispatchesEvents = [
+		'deleting' => \App\Events\BlockDeleting::class,
+	];
+
 	public function business()
 	{
 		return $this->belongsTo(Business::class);

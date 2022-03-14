@@ -33,4 +33,23 @@ class Category extends Model
 	protected $guarded = [];
 
 	protected $hidden = [];
+
+	protected $dispatchesEvents = [
+		'deleting' => \App\Events\CategoryDeleting::class,
+	];
+
+	public function business()
+	{
+		return $this->belongsTo(Business::class);
+	}
+
+	public function products()
+	{
+		return $this->hasMany(Product::class);
+	}
+
+	public function demands()
+	{
+		return $this->hasMany(Demand::class);
+	}
 }

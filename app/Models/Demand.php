@@ -17,6 +17,7 @@ class Demand extends Model
 	protected $attributes = [
 		'business_id' => null, // [type:integer, model:Business] Business ID
 		'category_id' => null, // [type:integer, model:Category, nullable] Category ID
+		'is_paid' => false, // [type:boolean] Is Paid
 	];
 
 	protected $casts = [
@@ -29,4 +30,18 @@ class Demand extends Model
 	protected $guarded = [];
 
 	protected $hidden = [];
+
+	protected $dispatchesEvents = [
+		// 'deleting' => \App\Events\DemandDeleting::class,
+	];
+
+	public function business()
+	{
+		return $this->belongsTo(Business::class);
+	}
+
+	public function category()
+	{
+		return $this->belongsTo(Category::class);
+	}
 }

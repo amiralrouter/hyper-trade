@@ -2,9 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\UserDeleting;
-
-class DeleteUserTelegram
+class BlockDeleteFloors
 {
 	/**
 	 * Create the event listener.
@@ -18,8 +16,12 @@ class DeleteUserTelegram
 	 *
 	 * @param object $event
 	 */
-	public function handle(UserDeleting $event): void
+	public function handle($event): void
 	{
-		$event->user->telegram->delete();
+		$block = $event->block;
+		$floors = $block->floors;
+		foreach ($floors as $floor) {
+			$floor->delete();
+		}
 	}
 }

@@ -2,9 +2,7 @@
 
 namespace App\Listeners;
 
-use Illuminate\Support\Str;
-
-class PrinterSetUuid
+class FloorDerelictUnits
 {
 	/**
 	 * Create the event listener.
@@ -20,7 +18,12 @@ class PrinterSetUuid
 	 */
 	public function handle($event): void
 	{
-		$event->printer->uuid = Str::uuid();
-		$event->printer->save();
+		$floor = $event->floor;
+		$units = $floor->units;
+		foreach ($units as $unit) {
+			$unit->block_id = null;
+			$unit->floor_id = null;
+			$unit->save();
+		}
 	}
 }

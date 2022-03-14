@@ -34,4 +34,14 @@ class Guest extends Model
 	{
 		return $this->belongsTo(Business::class);
 	}
+
+	public function language()
+	{
+		return $this->belongsTo(Language::class);
+	}
+
+	public function orders()
+	{
+		return $this->hasMany(Order::class);
+	}
 }

@@ -2,26 +2,26 @@
 
 namespace App\Events;
 
-use App\Models\Block;
+use App\Models\Category;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class BlockDeleting
+class CategoryDeleting
 {
 	use Dispatchable;
 	use InteractsWithSockets;
 	use SerializesModels;
 
-	public Block $block;
+	public Category $category;
 
 	/**
 	 * Create a new event instance.
 	 */
-	public function __construct(Block $block)
+	public function __construct(Category $category)
 	{
-		$this->block = $block;
+		$this->category = $category;
 	}
 
 	/**

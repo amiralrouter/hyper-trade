@@ -28,5 +28,6 @@ class UnitCreateWallet
 		$wallet->save();
 
 		$unit->wallet_id = $wallet->id;
+		$unit->save();
 	}
 }

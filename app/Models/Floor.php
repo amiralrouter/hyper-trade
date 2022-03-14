@@ -23,6 +23,10 @@ class Floor extends Model
 		'block_id' => 'integer',
 	];
 
+	protected $dispatchesEvents = [
+		'deleting' => \App\Events\FloorDeleting::class,
+	];
+
 	protected $appends = [];
 
 	protected $guarded = [];
