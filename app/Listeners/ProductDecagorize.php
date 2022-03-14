@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-class CategoryDerelictProducts
+class ProductDecagorize
 {
 	/**
 	 * Create the event listener.
@@ -18,9 +18,9 @@ class CategoryDerelictProducts
 	 */
 	public function handle($event): void
 	{
-		$category = $event->category;
-
-		// flush category products
-		// $category->products()->detach();
+		// product decagorize
+		$product = $event->product;
+		// remove all many to many categories relations
+		$product->categories()->detach();
 	}
 }

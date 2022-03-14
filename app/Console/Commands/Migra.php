@@ -260,7 +260,7 @@ class Migra extends Command
 		$cols = [];
 		$cols[] = '$table->id();';
 		foreach ($model['translatable_fields'] as $field) {
-			$cols[] = '$table->json(\'' . $field . '\');';
+			$cols[] = '$table->json(\'' . $field . '\')->default(\'{}\');';
 		}
 		foreach ($model['attributes'] as $attribute) {
 			$col = '$table';

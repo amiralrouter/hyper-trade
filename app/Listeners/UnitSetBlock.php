@@ -2,6 +2,9 @@
 
 namespace App\Listeners;
 
+use App\Models\Block;
+use App\Models\Floor;
+
 class UnitSetBlock
 {
 	/**
@@ -19,9 +22,17 @@ class UnitSetBlock
 	public function handle($event): void
 	{
 		// unit set block_id from unit's floor's block_id
-		if (null !== $event->unit->floor) {
-			$event->unit->block_id = $event->unit->floor->block_id;
-			$event->unit->save();
+		$unit = $event->unit;
+		$floor_id = $unit->floor_id;
+		$floor = Floor::find($floor_id);
+
+		if ($floor) {
+			$block_id = $floor->block_id;
+			$block = Block::find($block_id);
+
+			if ($block) {
+				$unit->block_id = $block_id;
+			}
 		}
 	}
 }

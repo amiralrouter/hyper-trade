@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('demands', function (Blueprint $table) {
 			$table->id();
-			$table->json('name');
-			$table->json('description');
+			$table->json('name')->default('{}');
+			$table->json('description')->default('{}');
 			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Category ID');
+			$table->boolean('is_paid')->comment('Is Paid');
 			$table->timestamps();
         });
     }

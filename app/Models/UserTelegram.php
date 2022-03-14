@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserTelegram extends Model
 {
 	protected $attributes = [
-		'user_id' => 0, // [type:integer, class:User] User ID
+		'user_id' => null, // [type:integer, model:User] User ID
 
 		'chat_id' => 0, // [type:integer] Telegram ID of the user
 

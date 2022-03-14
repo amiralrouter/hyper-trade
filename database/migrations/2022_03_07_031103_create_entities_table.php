@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->float('price')->comment('Price');
 			$table->integer('quantity')->comment('Quantity');
 			$table->float('total_price')->comment('Total price');
+			$table->text('note')->nullable()->comment('Note');
 			$table->timestamps();
         });
     }

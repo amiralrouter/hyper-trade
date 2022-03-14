@@ -18,6 +18,8 @@ class Order extends Model
 	protected $casts = [
 		'business_id' => 'integer',
 		'wallet_id' => 'integer',
+		'guest_id' => 'integer',
+		'note' => 'string',
 	];
 
 	protected $appends = [];

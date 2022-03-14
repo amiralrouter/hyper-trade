@@ -23,6 +23,7 @@ class Demand extends Model
 	protected $casts = [
 		'business_id' => 'integer',
 		'category_id' => 'integer',
+		'is_paid' => 'boolean',
 	];
 
 	protected $appends = [];

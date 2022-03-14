@@ -2,26 +2,28 @@
 
 namespace App\Events;
 
-use App\Models\Unit;
-use Illuminate\Broadcasting\InteractsWithSockets;
+use App\Models\Product;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\InteractsWithSockets;
 
-class UnitSaved
+class ProductDeleting
 {
 	use Dispatchable;
 	use InteractsWithSockets;
 	use SerializesModels;
 
-	public Unit $unit;
+	public Product $product;
 
 	/**
 	 * Create a new event instance.
 	 */
-	public function __construct(Unit $unit)
+	public function __construct(Product $product)
 	{
-		$this->unit = $unit;
+		$this->product = $product;
+
+		echo 'Product deleting: ' . $product->id . PHP_EOL;
 	}
 
 	/**

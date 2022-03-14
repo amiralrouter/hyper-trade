@@ -23,13 +23,28 @@ class Floor extends Model
 		'block_id' => 'integer',
 	];
 
-	protected $dispatchesEvents = [
-		'deleting' => \App\Events\FloorDeleting::class,
-	];
-
 	protected $appends = [];
 
 	protected $guarded = [];
 
 	protected $hidden = [];
+
+	protected $dispatchesEvents = [
+		'deleting' => \App\Events\FloorDeleting::class,
+	];
+
+	public function business()
+	{
+		return $this->belongsTo(Business::class);
+	}
+
+	public function block()
+	{
+		return $this->belongsTo(Block::class);
+	}
+
+	public function units()
+	{
+		return $this->hasMany(Unit::class);
+	}
 }

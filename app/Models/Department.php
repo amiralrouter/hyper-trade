@@ -17,12 +17,15 @@ class Department extends Model
 		'business_id' => null, // [type:integer, model:Business] Business ID
 		'is_admin_department' => false, // [type:boolean] Is admin department
 		'can_manage_units' => false, // [type:boolean] Can manage units
+
+		'slug' => null, // [type:string, max:128, nullable] Slug
 	];
 
 	protected $casts = [
 		'business_id' => 'integer',
 		'is_admin_department' => 'boolean',
 		'can_manage_units' => 'boolean',
+		'slug' => 'string',
 	];
 
 	protected $appends = [];

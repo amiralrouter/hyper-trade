@@ -11,17 +11,19 @@ class Menu extends Model
 
 	protected $translatable = [
 		'name',
-		'description',
 	];
 
 	protected $attributes = [
 		'business_id' => null, // [type:integer, model:Business] Business ID
+
+		'slug' => null, // [type:string, max:128, nullable] Slug
 
 		'is_active' => true, // [type:boolean] Is active
 	];
 
 	protected $casts = [
 		'business_id' => 'integer',
+		'slug' => 'string',
 		'is_active' => 'boolean',
 	];
 

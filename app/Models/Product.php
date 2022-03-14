@@ -38,6 +38,10 @@ class Product extends Model
 
 	protected $hidden = [];
 
+	protected $dispatchesEvents = [
+		'deleting' => \App\Events\ProductDeleting::class,
+	];
+
 	public function categories()
 	{
 		return $this->belongsToMany(Category::class);

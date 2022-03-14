@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('floors', function (Blueprint $table) {
 			$table->id();
-			$table->json('name');
+			$table->json('name')->default('{}');
 			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->foreignId('block_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Block ID');
 			$table->timestamps();

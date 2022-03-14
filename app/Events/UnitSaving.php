@@ -8,7 +8,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UnitCreated
+class UnitSaving
 {
 	use Dispatchable;
 	use InteractsWithSockets;
@@ -23,7 +23,7 @@ class UnitCreated
 	{
 		$this->unit = $unit;
 
-		echo 'Unit created: ' . $unit->id . PHP_EOL;
+		echo 'Unit saving: ' . $unit->id . PHP_EOL;
 	}
 
 	/**

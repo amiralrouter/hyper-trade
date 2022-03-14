@@ -12,7 +12,7 @@ return new class() extends Migration {
 	{
 		Schema::create('blocks', function (Blueprint $table): void {
 			$table->id();
-			$table->json('name');
+			$table->json('name')->default('{}');
 			$table->foreignId('business_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->timestamps();
 		});

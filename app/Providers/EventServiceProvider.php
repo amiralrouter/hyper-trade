@@ -9,9 +9,9 @@ use App\Events\FloorDeleting;
 use App\Events\GuestCreated;
 use App\Events\OrderCreated;
 use App\Events\PrinterCreated;
+use App\Events\ProductDeleting;
 use App\Events\UnitCreated;
 use App\Events\UnitReset;
-use App\Events\UnitSaved;
 use App\Events\UserCreated;
 use App\Events\UserDeleting;
 use Illuminate\Auth\Events\Registered;
@@ -53,7 +53,7 @@ class EventServiceProvider extends ServiceProvider
 			\App\Listeners\UnitCreatePin::class,
 			\App\Listeners\UnitCreateWallet::class,
 		],
-		UnitSaved::class => [
+		UnitSaving::class => [
 			\App\Listeners\UnitSetBlock::class,
 		],
 		UnitReset::class => [
@@ -74,6 +74,12 @@ class EventServiceProvider extends ServiceProvider
 		CategoryDeleting::class => [
 			\App\Listeners\CategoryDerelictProducts::class,
 			\App\Listeners\CategoryDerelictDemands::class,
+		],
+		// PRODUCT EVENTS
+		ProductDeleting::class => [
+			\App\Listeners\ProductDecagorize::class,
+			\App\Listeners\ProductDematerialize::class,
+			\App\Listeners\ProductDemenu::class,
 		],
 		// ORDER EVENTS
 		OrderCreated::class => [

@@ -17,6 +17,8 @@ return new class extends Migration
 			$table->id();
 			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->foreignId('wallet_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Wallet ID');
+			$table->foreignId('guest_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Guest ID');
+			$table->text('note')->nullable()->comment('Note');
 			$table->timestamps();
 		});
     }

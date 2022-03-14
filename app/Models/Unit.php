@@ -44,7 +44,7 @@ class Unit extends Model
 
 	protected $dispatchesEvents = [
 		'created' => \App\Events\UnitCreated::class,
-		'saved' => \App\Events\UnitSaved::class,
+		'saving' => \App\Events\UnitSaving::class,
 	];
 
 	public function business()

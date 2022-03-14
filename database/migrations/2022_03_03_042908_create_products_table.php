@@ -12,8 +12,8 @@ return new class() extends Migration {
 	{
 		Schema::create('products', function (Blueprint $table): void {
 			$table->id();
-			$table->json('name');
-			$table->json('description');
+			$table->json('name')->default('{}');
+			$table->json('description')->default('{}');
 			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->float('price')->comment('Price');
 			$table->integer('preparation_time')->comment('Preparation time in minutes');

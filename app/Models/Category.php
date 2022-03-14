@@ -12,12 +12,13 @@ class Category extends Model
 
 	protected $translatable = [
 		'name',
-		'description',
 	];
 
 	protected $attributes = [
 		'business_id' => null, // [type:integer, model:Business, nullable] Business ID
 		'category_type' => CategoryType::PRODUCT, // [type:enum, enum:CategoryType, def:1] Category type
+
+		'slug' => null, // [type:string, max:128, nullable] Slug
 
 		'is_active' => true, // [type:boolean] Is active
 	];
@@ -25,6 +26,7 @@ class Category extends Model
 	protected $casts = [
 		'business_id' => 'integer',
 		'category_type' => CategoryType::class,
+		'slug' => 'string',
 		'is_active' => 'boolean',
 	];
 
@@ -45,7 +47,7 @@ class Category extends Model
 
 	public function products()
 	{
-		return $this->hasMany(Product::class);
+		return $this->belongsToMany(Product::class);
 	}
 
 	public function demands()

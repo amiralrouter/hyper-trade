@@ -25,6 +25,7 @@ class Entity extends Model
 		'price' => 'float',
 		'quantity' => 'integer',
 		'total_price' => 'float',
+		'note' => 'string',
 	];
 
 	protected $appends = [];
