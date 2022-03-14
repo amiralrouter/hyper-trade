@@ -22,6 +22,20 @@ class Department
 				],
 			],
 			[
+				'slug' => 'kitchen',
+				'name' => [
+					'en' => 'Kitchen',
+					'tr' => 'Mutfak',
+				],
+			],
+			[
+				'slug' => 'bar',
+				'name' => [
+					'en' => 'Bar',
+					'tr' => 'Bar',
+				],
+			],
+			[
 				'slug' => 'loby',
 				'name' => [
 					'en' => 'Loby',

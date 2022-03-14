@@ -17,6 +17,8 @@ class Product extends Model
 	protected $attributes = [
 		'business_id' => null, // [type:integer, model:Business] Business ID
 
+		'code' => null, // [type:string, max:64, nullable] Product code
+
 		'price' => 0.0, // [type:float] Price
 		'preparation_time' => 0, // [type:integer] Preparation time in minutes
 
@@ -26,6 +28,7 @@ class Product extends Model
 
 	protected $casts = [
 		'business_id' => 'integer',
+		'code' => 'string',
 		'price' => 'float',
 		'preparation_time' => 'integer',
 		'is_active' => 'boolean',

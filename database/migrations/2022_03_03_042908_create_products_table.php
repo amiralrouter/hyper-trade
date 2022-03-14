@@ -15,6 +15,7 @@ return new class() extends Migration {
 			$table->json('name')->default('{}');
 			$table->json('description')->default('{}');
 			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
+			$table->string('code')->nullable()->comment('Product code');
 			$table->float('price')->comment('Price');
 			$table->integer('preparation_time')->comment('Preparation time in minutes');
 			$table->boolean('is_active')->comment('Is active');

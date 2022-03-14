@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <info title="Gloria Jeans - Türkçe" /> 
+
+    <blocks>
+        <block id="1" name="Ön Taraf" />
+        <block id="2" name="Arka Taraf" />
+    </blocks> 
+
+    <floors>
+        <floor id="1" name="Zemin Kat" block_id="1" />
+        <floor id="2" name="Zemin Kat" block_id="2" />
+    </floors>
+
+    <unit_types>
+        <unit_type id="1" name="Masa" />
+    </unit_types>
+
+    <units>
+        <unit id="1" unit_type_id="1" floor_id="1" name="Masa 1"/> 
+        <unit id="2" unit_type_id="1" floor_id="1" name="Masa 2"/>
+        <unit id="3" unit_type_id="1" floor_id="1" name="Masa 3"/>
+        <unit id="4" unit_type_id="1" floor_id="1" name="Masa 4"/>
+        <unit id="5" unit_type_id="1" floor_id="1" name="Masa 5"/>
+
+        <unit id="6" unit_type_id="1" floor_id="2" name="Masa 6"/>
+        <unit id="7" unit_type_id="1" floor_id="2" name="Masa 7"/>
+        <unit id="8" unit_type_id="1" floor_id="2" name="Masa 8"/>
+        <unit id="9" unit_type_id="1" floor_id="2" name="Masa 9"/>
+        <unit id="10" unit_type_id="1" floor_id="2" name="Masa 10"/>
+    </units>
+
+    <categories>
+        <category id="1" category_type="1" name="İçecekler"/>
+        <category id="2" category_type="1" name="Yiyecekler"/>
+        <category id="3" category_type="1" name="Diğerleri"/>
+    </categories>
+
+    <materials>
+        <material id="1" name="Süt"/> 
+        <material id="2" name="Krema"/>
+        <material id="3" name="Turşu"/>
+        <material id="4" name="Mayonez"/>
+        <material id="5" name="Ketçap"/>
+        <material id="6" name="Sos"/>
+    </materials>
+
+    <options>
+        <option id="1" title="İçecek Aroması" name="Aroma" required="false">
+            <item id="1" name="Böğürtlen" price="3" />
+            <item id="2" name="Vanilya" price="3" />
+            <item id="3" name="Hindistan Cevizi" price="3" /> 
+        </option>
+        <option id="2" title="Yan ürün">
+            <item id="1" name="Patates" price="0" />
+            <item id="2" name="Puding" price="0" />
+        </option>
+        <option id="3" title="Nargile Aroması" name="Aroma" required="true">
+            <item id="1" name="Kavun" price="0" /> 
+            <item id="2" name="Karpuz" price="0" /> 
+            <item id="3" name="Kiraz" price="0" />
+            <item id="4" name="Limon" price="0" />
+        </option>
+    </options>
+
+    <menus>
+        <menu id="1" name="Ön taraf ürünleri" />
+        <menu id="2" name="Arka taraf ürünleri" /> 
+    </menus>
+
+    <products>
+        <product id="1" name="Çay" categories="1" in_all_menus="true"/>
+        <product id="2" name="Kola" categories="1" in_all_menus="true"/>
+        <product id="3" name="Kahve" categories="1" materials="1" in_all_menus="true"/>
+        <product id="4" name="White Chocolate Mocha" categories="1" materials="2" options="1" in_all_menus="true"/>
+
+        <product id="5" name="Hamburger" categories="2" materials="4,5,6" options="2" menus="1"/>
+        <product id="6" name="Cheeseburger" categories="2" materials="4,5,6" options="2" menus="1"/>
+
+        <product id="7" name="Nargile" categories="3" options="3" menus="2"/>
+    </products>
+
+    <departments>
+        <department id="1" name="Mutfak" />
+        <department id="2" name="Bar" />
+        <department id="3" name="Garson" />
+    </departments>
+
+    <users></users>
+
+    
+</data>

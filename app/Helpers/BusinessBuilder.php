@@ -110,4 +110,9 @@ class BusinessBuilder
 		$this->buildDesks();
 		$this->buildAdmin();
 	}
+
+	public function getBusiness(): Business
+	{
+		return $this->business;
+	}
 }

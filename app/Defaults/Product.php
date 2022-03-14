@@ -8,7 +8,7 @@ class Product
 	{
 		return [
 			[
-				'slug' => 'fruitplate',
+				'code' => 'fruitplate',
 				'name' => [
 					'en' => 'Fruit Plate',
 					'tr' => 'Meyve Tabağı',
@@ -25,7 +25,7 @@ class Product
 				'materials' => ['banana', 'kiwi', 'strawberry', 'redapple', 'greenapple', 'pineapple', 'walnut', 'pomegranate', 'blackberry'],
 			],
 			[
-				'slug' => 'nutsplate',
+				'code' => 'nutsplate',
 				'name' => [
 					'en' => 'Nuts Plate',
 					'tr' => 'Kuruyemiş Tabağı',
@@ -42,7 +42,7 @@ class Product
 				'materials' => ['cashew', 'almond', 'peanut', 'hazelnut', 'roastedchickpea'],
 			],
 			[
-				'slug' => 'fryingbasket',
+				'code' => 'fryingbasket',
 				'name' => [
 					'en' => 'Frying Basket',
 					'tr' => 'Kızartma Sepeti',
@@ -59,7 +59,7 @@ class Product
 				'materials' => ['friedpotatoes', 'nugget', 'onionrings', 'springroll'],
 			],
 			[
-				'slug' => 'grilledmeatballs',
+				'code' => 'grilledmeatballs',
 				'name' => [
 					'en' => 'Grilled meat balls',
 					'tr' => 'Izgara Köfte',
@@ -76,7 +76,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'chickenshish',
+				'code' => 'chickenshish',
 				'name' => [
 					'en' => 'Chicken Shish',
 					'tr' => 'Tavuk Şiş',
@@ -93,7 +93,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'chickenwing',
+				'code' => 'chickenwing',
 				'name' => [
 					'en' => 'Chicken Wing',
 					'tr' => 'Tavuk Kanat',
@@ -110,7 +110,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'spaghetti',
+				'code' => 'spaghetti',
 				'name' => [
 					'en' => 'Spaghetti',
 					'tr' => 'Spagetti',
@@ -127,7 +127,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'meatwrap',
+				'code' => 'meatwrap',
 				'name' => [
 					'en' => 'Meat Wrap',
 					'tr' => 'Et Wrap',
@@ -144,7 +144,7 @@ class Product
 				'materials' => ['sweetpeppers', 'mushroom', 'tomato', 'potato', 'cheddarcheese', 'basilsauce'],
 			],
 			[
-				'slug' => 'chickenwrap',
+				'code' => 'chickenwrap',
 				'name' => [
 					'en' => 'Chicken Wrap',
 					'tr' => 'Tavuk Wrap',
@@ -161,7 +161,7 @@ class Product
 				'materials' => ['sweetpeppers', 'mushroom', 'tomato', 'potato', 'cheddarcheese', 'basilsauce'],
 			],
 			[
-				'slug' => 'cheddarburger',
+				'code' => 'cheddarburger',
 				'name' => [
 					'en' => 'Cheddar Burger',
 					'tr' => 'Cheddar Burger',
@@ -178,7 +178,7 @@ class Product
 				'materials' => ['cheddarcheese', 'tomato', 'pickledgherkins', 'pastoralsauce', 'caramelizedonions'],
 			],
 			[
-				'slug' => 'caesarsalad',
+				'code' => 'caesarsalad',
 				'name' => [
 					'en' => 'Caesar salad',
 					'tr' => 'Sezar Salata',
@@ -195,7 +195,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'halloumisalad',
+				'code' => 'halloumisalad',
 				'name' => [
 					'en' => 'Halloumi Salad',
 					'tr' => 'Hellim Salata',
@@ -212,7 +212,7 @@ class Product
 				'materials' => ['hellimcheese', 'roastedpeppers', 'cherrytomatoes', 'sweetcorn', 'walnut'],
 			],
 			[
-				'slug' => 'soupoftheday',
+				'code' => 'soupoftheday',
 				'name' => [
 					'en' => 'Soup of the Day',
 					'tr' => 'Günün Çorbası',
@@ -229,7 +229,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'mixedtoast',
+				'code' => 'mixedtoast',
 				'name' => [
 					'en' => 'Mixed Toast',
 					'tr' => 'Karışık Tost',
@@ -246,7 +246,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'cheesetoast',
+				'code' => 'cheesetoast',
 				'name' => [
 					'en' => 'Cheese Toast',
 					'tr' => 'Kaşarlı Tost',
@@ -263,7 +263,7 @@ class Product
 				'materials' => [],
 			],
 			[
-				'slug' => 'villagebreakfast',
+				'code' => 'villagebreakfast',
 				'name' => [
 					'en' => 'Village Breakfast',
 					'tr' => 'Köy Kahvaltı',

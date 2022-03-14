@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Helpers\DemoDataBuilder;
+use App\Helpers\BusinessContentManager;
 use App\Models\Business;
 use Illuminate\Console\Command;
 
@@ -54,7 +54,7 @@ class Demo extends Command
 			return 1;
 		}
 
-		$demo_data_builder = new DemoDataBuilder($business_id);
+		$demo_data_builder = new BusinessContentManager($business_id);
 		$demo_data_builder->build();
 
 		return 0;

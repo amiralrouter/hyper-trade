@@ -36,6 +36,12 @@ return new class() extends Migration {
 			$table->foreignId('user_id')->constrained();
 		});
 
+		Schema::create('order_user', function (Blueprint $table): void {
+			$table->bigIncrements('id');
+			$table->foreignId('order_id')->constrained();
+			$table->foreignId('user_id')->constrained();
+		});
+
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
 
@@ -48,5 +54,7 @@ return new class() extends Migration {
 		Schema::dropIfExists('menu_unit');
 
 		Schema::dropIfExists('department_user');
+
+		Schema::dropIfExists('order_user');
 	}
 };

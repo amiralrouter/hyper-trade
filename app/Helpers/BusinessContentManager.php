@@ -13,7 +13,7 @@ use App\Models\UnitType;
 use App\Models\Department;
 use App\Enums\CategoryType;
 
-class DemoDataBuilder
+class BusinessContentManager
 {
 	private $business;
 
@@ -46,16 +46,29 @@ class DemoDataBuilder
 	public function flushAll(): void
 	{
 		$this->log('Flushing all data');
+
+		$this->flushUnity();
+
+		$this->flushProductivity();
+
+		$this->flushDepartments();
+	}
+
+	public function flushUnity(): void
+	{
+		$this->log('Flushing unity');
 		$this->flushUnits();
 		$this->flushUnitTypes();
 		$this->flushBlocks();
+	}
 
+	public function flushProductivity(): void
+	{
+		$this->log('Flushing productivity');
 		$this->flushProducts();
 		$this->flushCategories();
 		$this->flushMaterials();
 		$this->flushMenus();
-
-		$this->flushDepartments();
 	}
 
 	public function flushUnits(): void
@@ -308,6 +321,9 @@ class DemoDataBuilder
 			$product = Product::create([
 				'business_id' => $this->business->id,
 				'name' => $item['name'],
+				'price' => $item['price'],
+				'preparation_time' => $item['preparation_time'],
+				'code' => $item['code'],
 			]);
 			$product->categories()->attach($category_ids);
 			$product->menus()->attach($menu_ids);
