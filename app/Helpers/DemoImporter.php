@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Menu;
 use App\Models\Unit;
+use App\Models\User;
 use App\Models\Block;
 use App\Models\Floor;
 use App\Models\Product;
@@ -11,6 +12,7 @@ use App\Models\Business;
 use App\Models\Category;
 use App\Models\Material;
 use App\Models\UnitType;
+use App\Models\Department;
 
 class DemoImporter
 {
@@ -86,9 +88,8 @@ class DemoImporter
 		// unit_types
 		$unit_types = [];
 		foreach ($this->data->unit_types->unit_type as $item) {
-			$id = (string) $item['id'];
-			$name = (string) $item['name'];
-			$unit_types[$id] = UnitType::create([
+			$name = (string) $item;
+			$unit_types[$name] = UnitType::create([
 				'business_id' => $business_id,
 				'name' => $name,
 			]);
@@ -100,11 +101,11 @@ class DemoImporter
 			$id = (string) $item['id'];
 			$name = (string) $item['name'];
 			$floor_id = (string) $item['floor_id'];
-			$unit_type_id = (string) $item['unit_type_id'];
+			$unit_type = (string) $item['unit_type'];
 			$units[$id] = Unit::create([
 				'business_id' => $business_id,
 				'floor_id' => $floors[$floor_id]->id,
-				'unit_type_id' => $unit_types[$unit_type_id]->id,
+				'unit_type_id' => $unit_types[$unit_type]->id,
 				'name' => $name,
 			]);
 		}
@@ -112,10 +113,9 @@ class DemoImporter
 		// categories
 		$categories = [];
 		foreach ($this->data->categories->category as $item) {
-			$id = (string) $item['id'];
-			$name = (string) $item['name'];
+			$name = (string) $item;
 			$category_type = (string) $item['category_type'];
-			$categories[$id] = Category::create([
+			$categories[$name] = Category::create([
 				'business_id' => $business_id,
 				'name' => $name,
 				'category_type' => $category_type,
@@ -125,9 +125,8 @@ class DemoImporter
 		// materials
 		$materials = [];
 		foreach ($this->data->materials->material as $item) {
-			$id = (string) $item['id'];
-			$name = (string) $item['name'];
-			$materials[$id] = Material::create([
+			$name = (string) $item;
+			$materials[$name] = Material::create([
 				'business_id' => $business_id,
 				'name' => $name,
 			]);
@@ -138,9 +137,8 @@ class DemoImporter
 		// menus
 		$menus = [];
 		foreach ($this->data->menus->menu as $item) {
-			$id = (string) $item['id'];
-			$name = (string) $item['name'];
-			$menus[$id] = Menu::create([
+			$name = (string) $item;
+			$menus[$name] = Menu::create([
 				'business_id' => $business_id,
 				'name' => $name,
 			]);
@@ -155,24 +153,18 @@ class DemoImporter
 			$preparation_time = (int) $item['preparation_time'] ?? '';
 
 			$category_ids = [];
-			$item_categories = (string) $item['categories'] ?? '';
-			$item_category_ids = array_filter(explode(',', $item_categories));
-			foreach ($item_category_ids as $item_category_id) {
-				$category_ids[] = $categories[$item_category_id]->id;
+			foreach ($item->category as $key) {
+				$category_ids[] = $categories[(string) $key]->id;
 			}
 
 			$material_ids = [];
-			$item_materials = (string) $item['materials'] ?? '';
-			$item_material_ids = array_filter(explode(',', $item_materials));
-			foreach ($item_material_ids as $item_material_id) {
-				$material_ids[] = $materials[$item_material_id]->id;
+			foreach ($item->material as $key) {
+				$material_ids[] = $materials[(string) $key]->id;
 			}
 
 			$menu_ids = [];
-			$item_menus = (string) $item['menus'] ?? '';
-			$item_menu_ids = array_filter(explode(',', $item_menus));
-			foreach ($item_menu_ids as $item_menu_id) {
-				$menu_ids[] = $menus[$item_menu_id]->id;
+			foreach ($item->menu as $key) {
+				$menu_ids[] = $menus[(string) $key]->id;
 			}
 
 			$products[$id] = Product::create([
@@ -184,6 +176,36 @@ class DemoImporter
 			$products[$id]->categories()->sync($category_ids);
 			$products[$id]->materials()->sync($material_ids);
 			$products[$id]->menus()->sync($menu_ids);
+		}
+
+		// departments
+		$departments = [];
+		foreach ($this->data->departments->department as $name) {
+			$departments[(string) $name] = Department::create([
+				'business_id' => $business_id,
+				'name' => (string) $name,
+			]);
+		}
+
+		// users
+		$users = [];
+		foreach ($this->data->users->user as $item) {
+			$firstname = (string) $item['firstname'];
+			$lastname = (string) $item['lastname'];
+			$username = (string) $item['username'];
+			$related_with_all_units = ((string) $item['related_with_all_units'] ?? '') === 'true';
+			$user = User::create([
+				'business_id' => $business_id,
+				'firstname' => $firstname,
+				'lastname' => $lastname,
+				'username' => $username,
+				'related_with_all_units' => $related_with_all_units,
+			]);
+			$department_ids = [];
+			foreach ($item->department as $key) {
+				$department_ids[] = $departments[(string) $key]->id;
+			}
+			$user->departments()->sync($department_ids);
 		}
 	}
 }
