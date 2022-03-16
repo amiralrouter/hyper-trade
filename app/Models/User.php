@@ -57,4 +57,14 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo(UserTelegram::class);
 	}
+
+	public function order_users()
+	{
+		return $this->belongsToMany(self::class, 'unit_order_user', 'user_id', 'unit_id');
+	}
+
+	public function demand_users()
+	{
+		return $this->belongsToMany(self::class, 'unit_demand_user', 'user_id', 'unit_id');
+	}
 }

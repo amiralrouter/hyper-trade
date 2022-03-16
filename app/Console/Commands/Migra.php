@@ -299,6 +299,7 @@ class Migra extends Command
 				$col .= '->enum(\'' . $attribute['name'] . '\', [' . implode(', ', $values) . '])';
 			} else {
 				$type = $attribute['dbType'] ?? $attribute['type'];
+
 				$col .= '->' . $type . '(\'' . $attribute['name'] . '\'' . ($attribute['length'] ? ", {$attribute['length']}" : '') . ')';
 				if ($attribute['nullable']) {
 					$col .= '->nullable()';
@@ -309,7 +310,16 @@ class Migra extends Command
 					} else {
 						$col .= '->default(' . $attribute['default'] . ')';
 					}
+				} else {
+					if ('json' === $type) {
+						if ('index' === $attribute['arrayType']) {
+							$col .= '->default(\'[]\')';
+						} else {
+							$col .= '->default(\'{}\')';
+						}
+					}
 				}
+
 				if ($attribute['index']) {
 					$col .= '->index()';
 				}

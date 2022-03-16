@@ -180,11 +180,52 @@ class DemoImporter
 
 		// departments
 		$departments = [];
-		foreach ($this->data->departments->department as $name) {
-			$departments[(string) $name] = Department::create([
-				'business_id' => $business_id,
-				'name' => (string) $name,
-			]);
+		foreach ($this->data->departments->department as $item) {
+			$name = (string) $item['name'];
+			$order_related_all_units = ((string) $item['order_related_all_units'] ?? '') === 'true';
+			$order_related_blocks = [];
+			$order_related_floors = [];
+			$order_related_units = [];
+
+			$demand_related_all_units = ((string) $item['demand_related_all_units'] ?? '') === 'true';
+			$demand_related_blocks = [];
+			$demand_related_floors = [];
+			$demand_related_units = [];
+
+			foreach ($item->order_related_block_id as $id) {
+				$order_related_blocks[] = $blocks[(int) $id]->id;
+			}
+			foreach ($item->order_related_floor_id as $id) {
+				$order_related_floors[] = $floors[(int) $id]->id;
+			}
+			foreach ($item->order_related_unit_id as $id) {
+				$order_related_units[] = $units[(int) $id]->id;
+			}
+
+			foreach ($item->demand_related_block_id as $id) {
+				$demand_related_blocks[] = $blocks[(int) $id]->id;
+			}
+			foreach ($item->demand_related_floor_id as $id) {
+				$demand_related_floors[] = $floors[(int) $id]->id;
+			}
+			foreach ($item->demand_related_unit_id as $id) {
+				$demand_related_units[] = $units[(int) $id]->id;
+			}
+
+			$department = new Department();
+			$department->business_id = $business_id;
+			$department->name = (string) $name;
+			$department->order_related_all_units = $order_related_all_units;
+			$department->order_related_blocks = $order_related_blocks;
+			$department->order_related_floors = $order_related_floors;
+			$department->order_related_units = $order_related_units;
+			$department->demand_related_all_units = $demand_related_all_units;
+			$department->demand_related_blocks = $demand_related_blocks;
+			$department->demand_related_floors = $demand_related_floors;
+			$department->demand_related_units = $demand_related_units;
+
+			$department->save();
+			$departments[(string) $name] = $department;
 		}
 
 		// users
@@ -203,7 +244,9 @@ class DemoImporter
 			]);
 			$department_ids = [];
 			foreach ($item->department as $key) {
-				$department_ids[] = $departments[(string) $key]->id;
+				if (isset($departments[(string) $key])) {
+					$department_ids[] = $departments[(string) $key]->id;
+				}
 			}
 			$user->departments()->sync($department_ids);
 		}

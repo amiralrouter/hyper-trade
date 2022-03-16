@@ -11,6 +11,7 @@ use App\Events\OrderCreated;
 use App\Events\PrinterCreated;
 use App\Events\ProductDeleting;
 use App\Events\UnitCreated;
+use App\Events\UnitDeleting;
 use App\Events\UnitReset;
 use App\Events\UserCreated;
 use App\Events\UserDeleting;
@@ -52,6 +53,7 @@ class EventServiceProvider extends ServiceProvider
 		UnitCreated::class => [
 			\App\Listeners\UnitCreatePin::class,
 			\App\Listeners\UnitCreateWallet::class,
+			\App\Listeners\UnitConnectUsers::class,
 		],
 		UnitSaving::class => [
 			\App\Listeners\UnitSetBlock::class,
@@ -60,6 +62,10 @@ class EventServiceProvider extends ServiceProvider
 			\App\Listeners\UnitCreatePin::class,
 			\App\Listeners\UnitDropWallet::class,
 			\App\Listeners\UnitCreateWallet::class,
+		],
+		UnitDeleting::class => [
+			\App\Listeners\UnitDropWallet::class,
+			\App\Listeners\UnitDisconnectUsers::class,
 		],
 		// GUEST EVENTS
 		GuestCreated::class => [

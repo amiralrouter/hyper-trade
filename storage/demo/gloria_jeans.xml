@@ -107,9 +107,18 @@
     </products>
 
     <departments>
-        <department>Mutfak</department>
-        <department>Bar</department>
-        <department>Garson</department>
+        <department name="Müdür" order_related_all_units="true" demand_related_all_units="true">
+        </department>
+        <department name="Ön Taraf Garsonları" >
+            <order_related_block_id>1</order_related_block_id>
+        </department>
+        <department name="Arka Taraf Garsonları" >
+            <order_related_block_id>2</order_related_block_id>
+        </department> 
+        <department name="Mutfak" order_related_all_units="true">
+        </department>
+        <department name="Hizmetli" demand_related_all_units="true">
+        </department>
     </departments>
 
     <users>

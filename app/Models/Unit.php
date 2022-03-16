@@ -45,6 +45,7 @@ class Unit extends Model
 	protected $dispatchesEvents = [
 		'created' => \App\Events\UnitCreated::class,
 		'saving' => \App\Events\UnitSaving::class,
+		'deleting' => \App\Events\UnitDeleting::class,
 	];
 
 	public function business()
@@ -72,13 +73,14 @@ class Unit extends Model
 		return $this->belongsTo(Wallet::class);
 	}
 
-	public function users(): void
+	public function order_users()
 	{
-		// get users which are related_with_all_units, or related with this unit's floor or block id
-		// return $this->belongsToMany(User::class, 'user_unit')
-		// 	->withPivot('is_primary', 'is_secondary', 'is_tertiary')
-		// 	->withTimestamps();
-		// return $this->hasMany(User::class);
+		return $this->belongsToMany(User::class, 'unit_order_user', 'unit_id', 'user_id');
+	}
+
+	public function demand_users()
+	{
+		return $this->belongsToMany(User::class, 'unit_demand_user', 'unit_id', 'user_id');
 	}
 
 	public function reset(): void
