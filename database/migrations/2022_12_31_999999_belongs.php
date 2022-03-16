@@ -29,6 +29,11 @@ return new class() extends Migration {
 			$table->foreignId('menu_id')->constrained();
 			$table->foreignId('unit_id')->constrained();
 		});
+		Schema::create('product_unit', function (Blueprint $table): void {
+			$table->bigIncrements('id');
+			$table->foreignId('product_id')->constrained();
+			$table->foreignId('unit_id')->constrained();
+		});
 
 		Schema::create('department_user', function (Blueprint $table): void {
 			$table->bigIncrements('id');
@@ -63,6 +68,7 @@ return new class() extends Migration {
 		Schema::dropIfExists('material_product');
 
 		Schema::dropIfExists('menu_unit');
+		Schema::dropIfExists('product_unit');
 
 		Schema::dropIfExists('department_user');
 

@@ -9,10 +9,13 @@ use App\Events\FloorDeleting;
 use App\Events\GuestCreated;
 use App\Events\OrderCreated;
 use App\Events\PrinterCreated;
+use App\Events\ProductCreated;
 use App\Events\ProductDeleting;
+use App\Events\ProductUpdated;
 use App\Events\UnitCreated;
 use App\Events\UnitDeleting;
 use App\Events\UnitReset;
+use App\Events\UnitUpdated;
 use App\Events\UserCreated;
 use App\Events\UserDeleting;
 use Illuminate\Auth\Events\Registered;
@@ -47,16 +50,17 @@ class EventServiceProvider extends ServiceProvider
 		],
 		// FLOOR EVENTS
 		FloorDeleting::class => [
-			\App\Listeners\FloorDerelictUnits::class,
+			\App\Listeners\FloorDetachUnits::class,
 		],
 		// UNIT EVENTS
 		UnitCreated::class => [
 			\App\Listeners\UnitCreatePin::class,
 			\App\Listeners\UnitCreateWallet::class,
 			\App\Listeners\UnitConnectUsers::class,
+			\App\Listeners\UnitSyncProducts::class,
 		],
-		UnitSaving::class => [
-			\App\Listeners\UnitSetBlock::class,
+		UnitUpdated::class => [
+			\App\Listeners\UnitSyncProducts::class,
 		],
 		UnitReset::class => [
 			\App\Listeners\UnitCreatePin::class,
@@ -78,14 +82,21 @@ class EventServiceProvider extends ServiceProvider
 		],
 		// CATEGORY EVENTS
 		CategoryDeleting::class => [
-			\App\Listeners\CategoryDerelictProducts::class,
-			\App\Listeners\CategoryDerelictDemands::class,
+			\App\Listeners\CategoryDetachProducts::class,
+			\App\Listeners\CategoryDetachDemands::class,
 		],
 		// PRODUCT EVENTS
+		ProductCreated::class => [
+			\App\Listeners\ProductSyncUnits::class,
+		],
+		ProductUpdated::class => [
+			\App\Listeners\ProductSyncUnits::class,
+		],
 		ProductDeleting::class => [
-			\App\Listeners\ProductDecagorize::class,
-			\App\Listeners\ProductDematerialize::class,
-			\App\Listeners\ProductDemenu::class,
+			\App\Listeners\ProductDetachCategories::class,
+			\App\Listeners\ProductDetachMaterials::class,
+			\App\Listeners\ProductDetachMenus::class,
+			\App\Listeners\ProductDetachUnits::class,
 		],
 		// ORDER EVENTS
 		OrderCreated::class => [

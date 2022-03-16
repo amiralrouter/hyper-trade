@@ -34,11 +34,41 @@ class Business extends Model
 
 	public function blocks()
 	{
-		return $this->hasMany(Block::class)->where('is_global', false);
+		return $this->hasMany(Block::class);
 	}
 
 	public function floors()
 	{
-		return $this->hasMany(Floor::class)->where('is_global', false);
+		return $this->hasMany(Floor::class);
+	}
+
+	public function unit_types()
+	{
+		return $this->hasMany(UnitType::class);
+	}
+
+	public function units()
+	{
+		return $this->hasMany(Unit::class);
+	}
+
+	public function categories()
+	{
+		return $this->hasMany(Category::class);
+	}
+
+	public function menus()
+	{
+		return $this->hasMany(Menu::class);
+	}
+
+	public function materials()
+	{
+		return $this->hasMany(Material::class);
+	}
+
+	public function products()
+	{
+		return $this->hasMany(Product::class);
 	}
 }

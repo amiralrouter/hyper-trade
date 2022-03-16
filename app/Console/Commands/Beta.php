@@ -46,7 +46,7 @@ class Beta extends Command
 			$this->info($i . ' - ' . $demo['name']);
 		}
 
-		$demo_id = 0;
+		$demo_id = 1;
 		// $demo_id = $this->ask('choose id');
 
 		$importer->setDemoId($demo_id);

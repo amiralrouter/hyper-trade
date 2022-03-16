@@ -2,28 +2,26 @@
 
 namespace App\Events;
 
-use App\Models\Unit;
+use App\Models\Menu;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UnitSaving
+class MenuUpdated
 {
 	use Dispatchable;
 	use InteractsWithSockets;
 	use SerializesModels;
 
-	public Unit $unit;
+	public Menu $menu;
 
 	/**
 	 * Create a new event instance.
 	 */
-	public function __construct(Unit $unit)
+	public function __construct(Menu $menu)
 	{
-		$this->unit = $unit;
-
-		echo 'Unit saving: ' . $unit->id . PHP_EOL;
+		$this->menu = $menu;
 	}
 
 	/**

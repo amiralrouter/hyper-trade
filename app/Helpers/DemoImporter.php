@@ -35,7 +35,7 @@ class DemoImporter
 			$list[] = [
 				'path' => $file,
 				// file name without extension
-				'name' => $data->info['title'][0],
+				'name' => (string) $data->title,
 			];
 		}
 
@@ -54,6 +54,24 @@ class DemoImporter
 		// print_r($data->info['title']);
 	}
 
+	public function getTranslates($obj, $key = 'name')
+	{
+		$list = [];
+		// get child node by key
+		$node = $obj->xpath("{$key}")[0];
+
+		foreach ($node as $child) {
+			// get child tag name
+			$name = $child->getName();
+			// get child tag value
+			$value = (string) $child;
+			// add to list
+			$list[$name] = $value;
+		}
+
+		return $list;
+	}
+
 	public function import(): void
 	{
 		echo 'Importing demo data...';
@@ -65,7 +83,7 @@ class DemoImporter
 		$blocks = [];
 		foreach ($this->data->blocks->block as $item) {
 			$id = (string) $item['id'];
-			$name = (string) $item['name'];
+			$name = $this->getTranslates($item, 'name');
 			$blocks[$id] = Block::create([
 				'business_id' => $business_id,
 				'name' => $name,
@@ -76,7 +94,7 @@ class DemoImporter
 		$floors = [];
 		foreach ($this->data->floors->floor as $item) {
 			$id = (string) $item['id'];
-			$name = (string) $item['name'];
+			$name = $this->getTranslates($item, 'name');
 			$block_id = (string) $item['block_id'];
 			$floors[$id] = Floor::create([
 				'business_id' => $business_id,
@@ -88,8 +106,9 @@ class DemoImporter
 		// unit_types
 		$unit_types = [];
 		foreach ($this->data->unit_types->unit_type as $item) {
-			$name = (string) $item;
-			$unit_types[$name] = UnitType::create([
+			$id = (string) $item['id'];
+			$name = $this->getTranslates($item, 'name');
+			$unit_types[$id] = UnitType::create([
 				'business_id' => $business_id,
 				'name' => $name,
 			]);
@@ -99,13 +118,13 @@ class DemoImporter
 		$units = [];
 		foreach ($this->data->units->unit as $item) {
 			$id = (string) $item['id'];
-			$name = (string) $item['name'];
+			$name = $this->getTranslates($item, 'name');
 			$floor_id = (string) $item['floor_id'];
-			$unit_type = (string) $item['unit_type'];
+			$unit_type_id = (string) $item['unit_type_id'];
 			$units[$id] = Unit::create([
 				'business_id' => $business_id,
 				'floor_id' => $floors[$floor_id]->id,
-				'unit_type_id' => $unit_types[$unit_type]->id,
+				'unit_type_id' => $unit_types[$unit_type_id]->id,
 				'name' => $name,
 			]);
 		}
@@ -113,9 +132,10 @@ class DemoImporter
 		// categories
 		$categories = [];
 		foreach ($this->data->categories->category as $item) {
-			$name = (string) $item;
+			$id = (string) $item['id'];
+			$name = $this->getTranslates($item, 'name');
 			$category_type = (string) $item['category_type'];
-			$categories[$name] = Category::create([
+			$categories[$id] = Category::create([
 				'business_id' => $business_id,
 				'name' => $name,
 				'category_type' => $category_type,
@@ -125,8 +145,9 @@ class DemoImporter
 		// materials
 		$materials = [];
 		foreach ($this->data->materials->material as $item) {
-			$name = (string) $item;
-			$materials[$name] = Material::create([
+			$id = (string) $item['id'];
+			$name = $this->getTranslates($item, 'name');
+			$materials[$id] = Material::create([
 				'business_id' => $business_id,
 				'name' => $name,
 			]);
@@ -137,45 +158,76 @@ class DemoImporter
 		// menus
 		$menus = [];
 		foreach ($this->data->menus->menu as $item) {
-			$name = (string) $item;
-			$menus[$name] = Menu::create([
+			$id = (string) $item['id'];
+			$name = $this->getTranslates($item, 'name');
+			$menus[$id] = Menu::create([
 				'business_id' => $business_id,
 				'name' => $name,
 			]);
+
+			$block_ids = [];
+			foreach ($item->block as $row) {
+				$block_ids[] = $blocks[(string) $row['id']]->id;
+			}
+			$floor_ids = [];
+			foreach ($item->floor as $row) {
+				$floor_ids[] = $floors[(string) $row['id']]->id;
+			}
+			$unit_ids = [];
+			foreach ($item->unit as $row) {
+				$unit_ids[] = $units[(string) $row['id']]->id;
+			}
+			foreach ($block_ids as $block_id) {
+				$block = Block::find($block_id);
+				$unit_ids = array_merge($unit_ids, $block->units->pluck('id')->toArray());
+			}
+			foreach ($floor_ids as $floor_id) {
+				$floor = Floor::find($floor_id);
+				$unit_ids = array_merge($unit_ids, $floor->units->pluck('id')->toArray());
+			}
+			$unit_ids = array_unique($unit_ids);
+			// set menu units by unit ids
+			$menus[$id]->units()->sync($unit_ids);
 		}
 
 		// products
 		$products = [];
 		foreach ($this->data->products->product as $item) {
 			$id = (string) $item['id'];
-			$name = (string) $item['name'];
-			$price = (float) $item['price'] ?? '';
-			$preparation_time = (int) $item['preparation_time'] ?? '';
+			$name = $this->getTranslates($item, 'name');
+			$description = $this->getTranslates($item, 'description');
+			$price = (float) $item->price ?? 0;
+			$preparation_time = (int) $item->preparation_time ?? 0;
 
 			$category_ids = [];
-			foreach ($item->category as $key) {
-				$category_ids[] = $categories[(string) $key]->id;
+			foreach ($item->category as $row) {
+				$category_ids[] = $categories[(string) $row['id']]->id;
 			}
 
 			$material_ids = [];
-			foreach ($item->material as $key) {
-				$material_ids[] = $materials[(string) $key]->id;
+			foreach ($item->material as $row) {
+				echo $row['id'] . PHP_EOL;
+				$material_ids[] = $materials[(string) $row['id']]->id;
 			}
 
 			$menu_ids = [];
-			foreach ($item->menu as $key) {
-				$menu_ids[] = $menus[(string) $key]->id;
+			foreach ($item->menu as $row) {
+				$menu_ids[] = $menus[(string) $row['id']]->id;
 			}
 
-			$products[$id] = Product::create([
+			$product = Product::create([
 				'business_id' => $business_id,
 				'name' => $name,
+				'description' => $description,
 				'price' => $price,
 				'preparation_time' => $preparation_time,
 			]);
-			$products[$id]->categories()->sync($category_ids);
-			$products[$id]->materials()->sync($material_ids);
-			$products[$id]->menus()->sync($menu_ids);
+			$product->categories()->sync($category_ids);
+			$product->materials()->sync($material_ids);
+			$product->menus()->sync($menu_ids);
+			$products[$id] = $product;
+			// call product updated event
+			event(new \App\Events\ProductUpdated($product));
 		}
 
 		// departments

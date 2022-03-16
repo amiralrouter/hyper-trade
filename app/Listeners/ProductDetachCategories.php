@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-class FloorDerelictUnits
+class ProductDetachCategories
 {
 	/**
 	 * Create the event listener.
@@ -18,12 +18,9 @@ class FloorDerelictUnits
 	 */
 	public function handle($event): void
 	{
-		$floor = $event->floor;
-		$units = $floor->units;
-		foreach ($units as $unit) {
-			$unit->block_id = null;
-			$unit->floor_id = null;
-			$unit->save();
-		}
+		// product decagorize
+		$product = $event->product;
+		// remove all many to many categories relations
+		$product->categories()->detach();
 	}
 }

@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <title>Mega Hotel</title>
+
+    <blocks>
+        <block id="1">
+            <name>
+                <en>Main Building</en>
+                <tr>Ana Bina</tr>
+            </name>
+        </block>
+        <block id="2">
+            <name>
+                <en>Secondary Building</en>
+                <tr>Ek Bina</tr>
+            </name>
+        </block>
+    </blocks>
+
+
+    <floors>
+        <floor id="1" block_id="1">
+            <name>
+                <en>Ground Floor</en>
+                <tr>Zemin Kat</tr>
+            </name>
+        </floor>
+        <floor id="2" block_id="1">
+            <name>
+                <en>First Floor</en>
+                <tr>1. Kat</tr>
+            </name>
+        </floor>
+        <floor id="3" block_id="2">
+            <name>
+                <en>Ground Floor</en>
+                <tr>Zemin Kat</tr>
+            </name>
+        </floor>
+        <floor id="4" block_id="2">
+            <name>
+                <en>Second Floor</en>
+                <tr>1. Kat</tr>
+            </name>
+        </floor>
+    </floors>
+
+
+
+    <unit_types>
+        <unit_type id="1">
+            <name>
+                <en>Room</en>
+                <tr>Oda</tr>
+            </name>
+        </unit_type>
+        <unit_type id="2">
+            <name>
+                <en>Table</en>
+                <tr>Masa</tr>
+            </name>
+        </unit_type>
+    </unit_types>
+
+    <units>
+        <unit id="1" unit_type_id="1" floor_id="2">
+            <name>
+                <en>Room 1</en>
+                <tr>Oda 1</tr>
+            </name>
+        </unit>
+        <unit id="2" unit_type_id="1" floor_id="2">
+            <name>
+                <en>Room 2</en>
+                <tr>Oda 2</tr>
+            </name>
+        </unit>
+
+        <unit id="4" unit_type_id="1" floor_id="4">
+            <name>
+                <en>Room 1</en>
+                <tr>Oda 1</tr>
+            </name>
+        </unit>
+        <unit id="5" unit_type_id="1" floor_id="4">
+            <name>
+                <en>Room 2</en>
+                <tr>Oda 2</tr>
+            </name>
+        </unit>
+
+        <unit id="6" unit_type_id="2" floor_id="1">
+            <name>
+                <en>Table 1</en>
+                <tr>Masa 1</tr>
+            </name>
+        </unit>
+        <unit id="7" unit_type_id="2" floor_id="1">
+            <name>
+                <en>Table 2</en>
+                <tr>Masa 2</tr>
+            </name>
+        </unit>
+        <unit id="8" unit_type_id="2" floor_id="3">
+            <name>
+                <en>Table 1</en>
+                <tr>Masa 1</tr>
+            </name>
+        </unit>
+        <unit id="9" unit_type_id="2" floor_id="3">
+            <name>
+                <en>Table 2</en>
+                <tr>Masa 2</tr>
+            </name>
+        </unit>
+    </units>
+
+    <categories>
+        <category id="1" category_type="1">
+            <name>
+                <en>Breakfast</en>
+                <tr>Kahvaltı</tr>
+            </name>
+        </category>
+        <category id="2" category_type="1">
+            <name>
+                <en>Soups</en>
+                <tr>Çorbalar</tr>
+            </name>
+        </category>
+        <category id="3" category_type="1">
+            <name>
+                <en>Salads</en>
+                <tr>Salatalar</tr>
+            </name>
+        </category>
+        <category id="4" category_type="1">
+            <name>
+                <en>Burgers</en>
+                <tr>Burgerler</tr>
+            </name>
+        </category>
+        <category id="5" category_type="1">
+            <name>
+                <en>Pastas</en>
+                <tr>Makarnalar</tr>
+            </name>
+        </category>
+        <category id="6" category_type="1">
+            <name>
+                <en>Main Dishes</en>
+                <tr>Ana Yemekler</tr>
+            </name>
+        </category>
+        <category id="7" category_type="1">
+            <name>
+                <en>Fruit &#38; Snack Plates</en>
+                <tr>Meyve Ve Çerez Tabakları</tr>
+            </name>
+        </category>
+    </categories>
+
+    <materials>
+        <material id="1">
+            <name>
+                <en>Banana</en>
+                <tr>Muz</tr>
+            </name>
+        </material>
+        <material id="2">
+            <name>
+                <en>Kiwi</en>
+                <tr>Kivi</tr>
+            </name>
+        </material>
+        <material id="3">
+            <name>
+                <en>Strawberry</en>
+                <tr>Çilek</tr>
+            </name>
+        </material>
+        <material id="4">
+            <name>
+                <en>Red Apple</en>
+                <tr>Kırmızı Elma</tr>
+            </name>
+        </material>
+        <material id="5">
+            <name>
+                <en>Green Apple</en>
+                <tr>Yeşil Elma</tr>
+            </name>
+        </material>
+        <material id="6">
+            <name>
+                <en>Pineapple</en>
+                <tr>Ananas</tr>
+            </name>
+        </material>
+        <material id="7">
+            <name>
+                <en>Walnut</en>
+                <tr>Ceviz</tr>
+            </name>
+        </material>
+        <material id="8">
+            <name>
+                <en>Pomegranate</en>
+                <tr>Nar</tr>
+            </name>
+        </material>
+        <material id="9">
+            <name>
+                <en>Blackberry</en>
+                <tr>Böğürtlen</tr>
+            </name>
+        </material>
+        <material id="10">
+            <name>
+                <en>Cashew</en>
+                <tr>kaju</tr>
+            </name>
+        </material>
+        <material id="11">
+            <name>
+                <en>Almond</en>
+                <tr>badem</tr>
+            </name>
+        </material>
+        <material id="12">
+            <name>
+                <en>Peanut</en>
+                <tr>Fıstık</tr>
+            </name>
+        </material>
+        <material id="13">
+            <name>
+                <en>Hazelnut</en>
+                <tr>Fındık</tr>
+            </name>
+        </material>
+        <material id="14">
+            <name>
+                <en>Roasted Chickpea</en>
+                <tr>Leblebi</tr>
+            </name>
+        </material>
+        <material id="15">
+            <name>
+                <en>Nugget</en>
+                <tr>Nugget</tr>
+            </name>
+        </material>
+        <material id="16">
+            <name>
+                <en>Onion rings</en>
+                <tr>Soğan Halkası</tr>
+            </name>
+        </material>
+        <material id="17">
+            <name>
+                <en>Spring Roll</en>
+                <tr>Sigara Böreği</tr>
+            </name>
+        </material>
+        <material id="18">
+            <name>
+                <en>Sweet Peppers</en>
+                <tr>Tatlı Biberler</tr>
+            </name>
+        </material>
+        <material id="19">
+            <name>
+                <en>Mushroom</en>
+                <tr>Mantar</tr>
+            </name>
+        </material>
+        <material id="20">
+            <name>
+                <en>Tomato</en>
+                <tr>Domates</tr>
+            </name>
+        </material>
+        <material id="21">
+            <name>
+                <en>Potato</en>
+                <tr>Patates</tr>
+            </name>
+        </material>
+        <material id="22">
+            <name>
+                <en>Cheddar Cheese</en>
+                <tr>Cheddar Peyniri</tr>
+            </name>
+        </material>
+        <material id="23">
+            <name>
+                <en>Basil Sauce</en>
+                <tr>Fesleğen Sos</tr>
+            </name>
+        </material>
+        <material id="24">
+            <name>
+                <en>Pickled Gherkins</en>
+                <tr>Kornişon Turşu</tr>
+            </name>
+        </material>
+        <material id="25">
+            <name>
+                <en>Pastoral Sauce</en>
+                <tr>Pastoral Sos</tr>
+            </name>
+        </material>
+        <material id="26">
+            <name>
+                <en>Caramelized Onions</en>
+                <tr>Karamelize Soğan</tr>
+            </name>
+        </material>
+        <material id="27">
+            <name>
+                <en>Hellim Cheese</en>
+                <tr>Hellim Peyniri</tr>
+            </name>
+        </material>
+        <material id="28">
+            <name>
+                <en>Roasted Peppers</en>
+                <tr>Közlenmiş Biber</tr>
+            </name>
+        </material>
+        <material id="29">
+            <name>
+                <en>Cherry Tomatoes</en>
+                <tr>Cherry Domates</tr>
+            </name>
+        </material>
+        <material id="30">
+            <name>
+                <en>Sweet Corn</en>
+                <tr>Mısır</tr>
+            </name>
+        </material>
+    </materials>
+
+    <options>
+        <option title="Çikolata Aromaları" name="Aroma" required="false">
+            <item price="3">Böğürtlen</item>
+            <item price="3">Vanilya</item>
+            <item price="3">Hindistan Cevizi</item>
+        </option>
+        <option title="Yan ürün" name="Yan ürün">
+            <item>Patates</item>
+            <item>Puding</item>
+        </option>
+        <option title="Nargile Aroması" name="Aroma" required="true">
+            <item>Kavun</item>
+            <item>Karpuz</item>
+            <item>Kiraz</item>
+            <item>Limon</item>
+        </option>
+    </options>
+
+    <menus>
+        <menu id="1">
+            <name>
+                <en>Room Menu</en>
+                <tr>Oda Menüsü</tr>
+            </name>
+            <floor id="2"></floor>
+            <floor id="4"></floor>
+        </menu>
+        <menu id="2">
+            <name>
+                <en>Restaurant Menu</en>
+                <tr>Restorant Menüsü</tr>
+            </name>
+            <floor id="1"></floor>
+            <floor id="3"></floor>
+        </menu>
+    </menus>
+
+    <products>
+        <product id="1">
+            <name>
+                <en>Fruit Plate</en>
+                <tr>Meyve Tabağı</tr>
+            </name>
+            <description>
+                <en>Season fruits</en>
+                <tr>Mevsim meyveleri</tr>
+            </description>
+            <price>26</price>
+            <preparation_time>15</preparation_time>
+            <category id="7"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="1"></material>
+            <material id="2"></material>
+            <material id="3"></material>
+            <material id="4"></material>
+            <material id="5"></material>
+            <material id="6"></material>
+            <material id="7"></material>
+            <material id="8"></material>
+            <material id="9"></material>
+        </product>
+        <product id="2">
+            <name>
+                <en>Nuts Plate</en>
+                <tr>Kuruyemiş Tabağı</tr>
+            </name>
+            <description>
+                <en>Cookies</en>
+                <tr>Çerezler</tr>
+            </description>
+            <price>16</price>
+            <preparation_time>10</preparation_time>
+            <category id="7"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="10"></material>
+            <material id="11"></material>
+            <material id="12"></material>
+            <material id="13"></material>
+            <material id="14"></material>
+        </product>
+        <product id="3">
+            <name>
+                <en>Frying Basket</en>
+                <tr>Kızartma Sepeti</tr>
+            </name>
+            <description>
+                <en>Fried snacks</en>
+                <tr>Kızartılmış atıştırmalıklar</tr>
+            </description>
+            <price>28</price>
+            <preparation_time>20</preparation_time>
+            <category id="6"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="15"></material>
+            <material id="16"></material>
+            <material id="17"></material>
+        </product>
+        <product id="4">
+            <name>
+                <en>Grilled meat balls</en>
+                <tr>Izgara Köfte</tr>
+            </name>
+            <description>
+                <en>160 gr grilled meatballs, baked potatoes and boiled vegetables</en>
+                <tr>160 gr ızgara köfte kumpir patates ve haşlanmış sebze</tr>
+            </description>
+            <price>54</price>
+            <preparation_time>25</preparation_time>
+            <category id="6"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="5">
+            <name>
+                <en>Chicken Shish</en>
+                <tr>Tavuk Şiş</tr>
+            </name>
+            <description>
+                <en>200 g chicken breast, roasted peppers and tomatoes, potato wedges, tortilla bread</en>
+                <tr>200 gr tavuk göğsü közlenmiş biber ve domates, elma dilim patates, tortilla ekmeği</tr>
+            </description>
+            <price>32</price>
+            <preparation_time>15</preparation_time>
+            <category id="6"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="6">
+            <name>
+                <en>Chicken Wing</en>
+                <tr>Tavuk Kanat</tr>
+            </name>
+            <description>
+                <en>4 wings, 4 thighs, french fries with apple slices</en>
+                <tr>4 adet kanat, 4 adet but, elma dilim patates kızartması</tr>
+            </description>
+            <price>40</price>
+            <preparation_time>15</preparation_time>
+            <category id="6"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="7">
+            <name>
+                <en>Spaghetti</en>
+                <tr>Spagetti</tr>
+            </name>
+            <description>
+                <en>Bolognese sauce, parmesan cheese</en>
+                <tr>Bolognase sosu, parmesan peyniri</tr>
+            </description>
+            <price>30</price>
+            <preparation_time>20</preparation_time>
+            <category id="5"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="8">
+            <name>
+                <en>Meat Wrap</en>
+                <tr>Et Wrap</tr>
+            </name>
+            <description>
+                <en></en>
+                <tr>Tortilla ekmeği içerisinde sotelenmiş bonfile dilimleri, tatlı biberler, mantar, domates, Akdeniz
+                    yeşillikleri, patates tava, cheddar peyniri ve fesleğen sos</tr>
+            </description>
+            <price>45</price>
+            <preparation_time>15</preparation_time>
+            <category id="4"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="18"></material>
+            <material id="19"></material>
+            <material id="20"></material>
+            <material id="21"></material>
+            <material id="22"></material>
+            <material id="23"></material>
+        </product>
+        <product id="9">
+            <name>
+                <en>Chicken Wrap</en>
+                <tr>Tavuk Wrap</tr>
+            </name>
+            <description>
+                <en>Chicken breast sautéed in tortilla bread, sweet peppers, mushrooms, tomatoes, Mediterranean greens,
+                    fried potatoes, cheddar cheese and basil sauce</en>
+                <tr>Tortilla ekmeği içerisinde sotelenmiş tavuk göğsü, tatlı biberler, mantar, domates, Akdeniz
+                    yeşillikleri, patates tava, cheddar peyniri ve fesleğen sos</tr>
+            </description>
+            <price>35</price>
+            <preparation_time>15</preparation_time>
+            <category id="4"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="18"></material>
+            <material id="19"></material>
+            <material id="20"></material>
+            <material id="21"></material>
+            <material id="22"></material>
+            <material id="23"></material>
+        </product>
+        <product id="10">
+            <name>
+                <en>Cheddar Burger</en>
+                <tr>Cheddar Burger</tr>
+            </name>
+            <description>
+                <en>150 gr special hamburger patties, cheddar cheese, seasonal greens, tomatoes, pickles, pastoral
+                    sauce, caramelized onions and fried potatoes</en>
+                <tr>150 gr özel hamburger köftesi, cheddar peyniri, mevsim yeşillikleri, domates, kornişon turşu,
+                    pastoral sos, karamelize soğan ve patates tava</tr>
+            </description>
+            <price>40</price>
+            <preparation_time>25</preparation_time>
+            <category id="4"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="22"></material>
+            <material id="20"></material>
+            <material id="24"></material>
+            <material id="25"></material>
+            <material id="26"></material>
+        </product>
+        <product id="11">
+            <name>
+                <en>Caesar salad</en>
+                <tr>Sezar Salata</tr>
+            </name>
+            <description>
+                <en>Lettuce leaves blended with special Caesar dressing, grilled chicken pieces, croton bread, cherry
+                    tomatoes and parmesan cheese</en>
+                <tr>Özel sezar sosu ile harmanlanmış marul yaprakları, ızgara tavuk parçaları, kroton ekmek, cherry
+                    domates ve permesan peyniri</tr>
+            </description>
+            <price>25</price>
+            <preparation_time>30</preparation_time>
+            <category id="3"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="12">
+            <name>
+                <en>Halloumi Salad</en>
+                <tr>Hellim Salata</tr>
+            </name>
+            <description>
+                <en>Fried halloumi cheese on Mediterranean Greens, roasted peppers, cherry tomatoes, corn and walnuts
+                </en>
+                <tr>Akdeniz Yeşillikleri üzerine kızartılmış hellim peyniri, közlenmiş biber, cherry domates, mısır ve
+                    ceviz içi</tr>
+            </description>
+            <price>30</price>
+            <preparation_time>20</preparation_time>
+            <category id="3"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+            <material id="27"></material>
+            <material id="28"></material>
+            <material id="29"></material>
+            <material id="30"></material>
+            <material id="7"></material>
+        </product>
+        <product id="13">
+            <name>
+                <en>Soup of the Day</en>
+                <tr>Günün Çorbası</tr>
+            </name>
+            <description>
+                <en>Soup</en>
+                <tr>Çorba</tr>
+            </description>
+            <price>10</price>
+            <preparation_time>10</preparation_time>
+            <category id="2"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="14">
+            <name>
+                <en>Mixed Toast</en>
+                <tr>Karışık Tost</tr>
+            </name>
+            <description>
+                <en>Cheddar cheese and sausage slices in special toast bread, French Fries and Mediterranean Greens</en>
+                <tr>Özel tost ekmeği içerisinde kaşar peyniri ve sucuk dilimleri Patates Kızartması ve Akdeniz
+                    Yeşillikleri</tr>
+            </description>
+            <price>20</price>
+            <preparation_time>15</preparation_time>
+            <category id="1"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="15">
+            <name>
+                <en>Cheese Toast</en>
+                <tr>Kaşarlı Tost</tr>
+            </name>
+            <description>
+                <en>Cheddar Cheese in Special Toast Bread, French Fries and Mediterranean Greens</en>
+                <tr>Özel tost ekmeği içerisinde kaşar peyniri Patates Kızartması ve Akdeniz Yeşillikleri</tr>
+            </description>
+            <price>20</price>
+            <preparation_time>15</preparation_time>
+            <category id="1"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+        <product id="16">
+            <name>
+                <en>Village Breakfast</en>
+                <tr>Köy Kahvaltı</tr>
+            </name>
+            <description>
+                <en>Tomatoes, Cucumbers, Feta Cheese, Cheddar Cheese, Green and Black Olives, Honey and Cream, Jam,
+                    Butter, Fried Sausage, Eggs, Beef Ham, Sausage, Pastry, 2 teas are our offering.</en>
+                <tr>Domates, Salatalık, Beyaz Peynir, Kaşar Peyniri, Yeşil ve Siyah Zeytin, Bal ve Kaymak, Reçel,
+                    Tereyağı, Sucuk Tava, Yumurta, Dana Jambon, Sosis, Poğaça 2 çay ikramımızdır.</tr>
+            </description>
+            <price>80</price>
+            <preparation_time>30</preparation_time>
+            <category id="1"></category>
+            <menu id="2"></menu>
+            <menu id="1"></menu>
+        </product>
+    </products>
+
+    <departments>
+        <department id="1" order_all_units="true" demand_all_units="true">
+            <name>
+                <en>Director</en>
+                <tr>Yönetici</tr>
+            </name>
+        </department>
+        <department id="2">
+            <name>
+                <en>Cleaner</en>
+                <tr>Temizlikçi</tr>
+            </name>
+        </department> 
+        <department id="3">
+            <name>
+                <en>Main Building Restaurant Waiters</en>
+                <tr>Ana Bina Restoran Garsonları</tr>
+            </name>
+        </department>
+        <department id="4">
+            <name>
+                <en>Secondary Building Restaurant Waiters</en>
+                <tr>Ek Bina Restoran Garsonları</tr>
+            </name>
+        </department>
+        <department id="5">
+            <name>
+                <en>Main Building Restaurant Waiters</en>
+                <tr>Ana Bina Restoran Garsonları</tr>
+            </name>
+        </department>
+        <department id="6">
+            <name>
+                <en>Secondary Building Restaurant Waiters</en>
+                <tr>Ek Bina Restoran Garsonları</tr>
+            </name>
+        </department>
+    </departments>
+
+    <users>
+        <user firstname="İsmail" lastname="Keser" username="ismail">
+            <department>Mutfak</department>
+            <department>Bar</department>
+        </user>
+    </users>
+
+
+</data>

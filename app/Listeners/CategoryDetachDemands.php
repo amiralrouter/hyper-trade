@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-class ProductDemenu
+class CategoryDetachDemands
 {
 	/**
 	 * Create the event listener.
@@ -18,9 +18,8 @@ class ProductDemenu
 	 */
 	public function handle($event): void
 	{
-		// product demenu
-		$product = $event->product;
-		// remove all many to many categories relations
-		$product->menus()->detach();
+		$category = $event->category;
+		// make demands category null
+		$category->demands()->update(['category_id' => null]);
 	}
 }

@@ -43,6 +43,8 @@ class Product extends Model
 
 	protected $dispatchesEvents = [
 		'deleting' => \App\Events\ProductDeleting::class,
+		'created' => \App\Events\ProductCreated::class,
+		'updated' => \App\Events\ProductUpdated::class,
 	];
 
 	public function categories()
@@ -58,5 +60,15 @@ class Product extends Model
 	public function materials()
 	{
 		return $this->belongsToMany(Material::class);
+	}
+
+	public function business()
+	{
+		return $this->belongsTo(Business::class);
+	}
+
+	public function units()
+	{
+		return $this->belongsToMany(Unit::class);
 	}
 }

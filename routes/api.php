@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+	return $request->user();
+});
+
+// get for /test/:business_id
+Route::get('/test/{business_id}', function ($business_id) {
+	return Business::with([
+		'categories',
+		'menus',
+		'blocks',
+		'floors',
+		'unit_types',
+		'units',
+		'materials',
+		'products',
+	])->find($business_id);
 });

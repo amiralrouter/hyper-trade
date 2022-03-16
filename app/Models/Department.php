@@ -18,15 +18,15 @@ class Department extends Model
 		'is_admin_department' => false, // [type:boolean] Is admin department
 		'can_manage_units' => false, // [type:boolean] Can manage units
 
-		'order_related_all_units' => false, // [type:boolean] Order related all units
-		'order_related_blocks' => '[]', // [type:array, dbType:json] Blocks related to orders
-		'order_related_floors' => '[]', // [type:array, dbType:json] Floors related to orders
-		'order_related_units' => '[]', // [type:array, dbType:json] Units related to orders
+		'order_all_units' => false, // [type:boolean] Order all units
+		'order_blocks' => '[]', // [type:array, dbType:json] Blocks IDs
+		'order_floors' => '[]', // [type:array, dbType:json] Floors IDs
+		'order_units' => '[]', // [type:array, dbType:json] Units IDs
 
-		'demand_related_all_units' => false, // [type:boolean] Demand related all units
-		'demand_related_blocks' => '[]', // [type:array, dbType:json] Blocks related to demands
-		'demand_related_floors' => '[]', // [type:array, dbType:json] Floors related to demands
-		'demand_related_units' => '[]', // [type:array, dbType:json] Units related to demands
+		'demand_all_units' => false, // [type:boolean] Demand all units
+		'demand_blocks' => '[]', // [type:array, dbType:json] Blocks IDs
+		'demand_floors' => '[]', // [type:array, dbType:json] Floors IDs
+		'demand_units' => '[]', // [type:array, dbType:json] Units IDs
 
 		'slug' => null, // [type:string, max:128, nullable] Slug
 	];
@@ -35,14 +35,14 @@ class Department extends Model
 		'business_id' => 'integer',
 		'is_admin_department' => 'boolean',
 		'can_manage_units' => 'boolean',
-		'order_related_all_units' => 'boolean',
-		'order_related_blocks' => 'array',
-		'order_related_floors' => 'array',
-		'order_related_units' => 'array',
-		'demand_related_all_units' => 'boolean',
-		'demand_related_blocks' => 'array',
-		'demand_related_floors' => 'array',
-		'demand_related_units' => 'array',
+		'order_all_units' => 'boolean',
+		'order_blocks' => 'array',
+		'order_floors' => 'array',
+		'order_units' => 'array',
+		'demand_all_units' => 'boolean',
+		'demand_blocks' => 'array',
+		'demand_floors' => 'array',
+		'demand_units' => 'array',
 		'slug' => 'string',
 	];
 

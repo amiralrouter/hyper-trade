@@ -44,9 +44,27 @@ class Unit extends Model
 
 	protected $dispatchesEvents = [
 		'created' => \App\Events\UnitCreated::class,
-		'saving' => \App\Events\UnitSaving::class,
 		'deleting' => \App\Events\UnitDeleting::class,
+		'updated' => \App\Events\UnitUpdated::class,
 	];
+
+	protected static function boot(): void
+	{
+		parent::boot();
+		static::saving(function ($unit): void {
+			$floor_id = $unit->floor_id;
+			$floor = Floor::find($floor_id);
+
+			if ($floor) {
+				$block_id = $floor->block_id;
+				$block = Block::find($block_id);
+
+				if ($block) {
+					$unit->block_id = $block_id;
+				}
+			}
+		});
+	}
 
 	public function business()
 	{
@@ -71,6 +89,16 @@ class Unit extends Model
 	public function wallet()
 	{
 		return $this->belongsTo(Wallet::class);
+	}
+
+	public function menus()
+	{
+		return $this->belongsToMany(Menu::class);
+	}
+
+	public function products()
+	{
+		return $this->belongsToMany(Product::class);
 	}
 
 	public function order_users()

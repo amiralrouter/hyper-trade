@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Unit;
+use App\Models\Business;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
+});
+
+// group by /b
+Route::group(['prefix' => 'b/{business:id}/u/{unit:id}'], function (): void {
+	// get for /b/:business_id/u/:unit_id
+	Route::get('/', function (Business $business, Unit $unit) {
+		// echo 'Business: ' . $business->name . PHP_EOL;
+		// echo 'Unit: ' . $unit->id . PHP_EOL;
+
+		return $unit->products;
+
+		return $unit->menus;
+	});
 });

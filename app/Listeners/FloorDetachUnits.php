@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-class ProductDematerialize
+class FloorDetachUnits
 {
 	/**
 	 * Create the event listener.
@@ -18,9 +18,12 @@ class ProductDematerialize
 	 */
 	public function handle($event): void
 	{
-		// product dematerialize
-		$product = $event->product;
-		// remove all many to many categories relations
-		$product->materials()->detach();
+		$floor = $event->floor;
+		$units = $floor->units;
+		foreach ($units as $unit) {
+			$unit->block_id = null;
+			$unit->floor_id = null;
+			$unit->save();
+		}
 	}
 }
