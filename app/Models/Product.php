@@ -41,12 +41,6 @@ class Product extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'deleting' => \App\Events\ProductDeleting::class,
-		'created' => \App\Events\ProductCreated::class,
-		'updated' => \App\Events\ProductUpdated::class,
-	];
-
 	public function categories()
 	{
 		return $this->belongsToMany(Category::class);
@@ -70,5 +64,20 @@ class Product extends Model
 	public function units()
 	{
 		return $this->belongsToMany(Unit::class);
+	}
+
+	public function syncUnits()
+	{
+		$menus = $this->menus()->get();
+		$unit_ids = [];
+		foreach ($menus as $menu) {
+			$menu_units = $menu->units()->get();
+			foreach ($menu_units as $unit) {
+				$unit_ids[] = $unit->id;
+			}
+		}
+		$this->units()->sync($unit_ids);
+
+		return $this;
 	}
 }

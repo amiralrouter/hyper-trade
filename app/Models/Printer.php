@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Printer extends Model
@@ -24,12 +25,15 @@ class Printer extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'created' => \App\Events\PrinterCreated::class,
-	];
-
 	public function business()
 	{
 		return $this->belongsTo(Business::class);
+	}
+
+	public function reset_uuid()
+	{
+		$this->uuid = Str::uuid();
+
+		return $this;
 	}
 }

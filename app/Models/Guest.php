@@ -26,10 +26,6 @@ class Guest extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'created' => \App\Events\GuestCreated::class,
-	];
-
 	public function business()
 	{
 		return $this->belongsTo(Business::class);

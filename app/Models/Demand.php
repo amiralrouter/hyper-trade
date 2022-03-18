@@ -32,10 +32,6 @@ class Demand extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		// 'deleting' => \App\Events\DemandDeleting::class,
-	];
-
 	public function business()
 	{
 		return $this->belongsTo(Business::class);

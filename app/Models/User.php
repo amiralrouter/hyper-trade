@@ -43,11 +43,6 @@ class User extends Authenticatable
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'created' => \App\Events\UserCreated::class,
-		'deleting' => \App\Events\UserDeleting::class,
-	];
-
 	public function departments()
 	{
 		return $this->belongsToMany(Department::class);
@@ -58,13 +53,58 @@ class User extends Authenticatable
 		return $this->belongsTo(UserTelegram::class);
 	}
 
-	public function order_users()
+	public function order_units()
 	{
 		return $this->belongsToMany(self::class, 'unit_order_user', 'user_id', 'unit_id');
 	}
 
-	public function demand_users()
+	public function petition_units()
 	{
-		return $this->belongsToMany(self::class, 'unit_demand_user', 'user_id', 'unit_id');
+		return $this->belongsToMany(self::class, 'unit_petition_user', 'user_id', 'unit_id');
+	}
+
+	public function syncUnits()
+	{
+		$departments = $this->departments()->get();
+		$units = Unit::where('business_id', $this->business_id)->get();
+		$order_units_ids = [];
+		$petition_units_ids = [];
+		foreach ($departments as $department) {
+			if ($department->order_all_units) {
+				$ids = $units->pluck('id')->toArray();
+				$order_units_ids = array_merge($order_units_ids, $ids);
+			} elseif ($department->order_blocks) {
+				$ids = $units->whereIn('block_id', $department->order_blocks)->pluck('id')->toArray();
+				$order_units_ids = array_merge($order_units_ids, $ids);
+			} elseif ($department->order_floors) {
+				$ids = $units->whereIn('floor_id', $department->order_floors)->pluck('id')->toArray();
+				$order_units_ids = array_merge($order_units_ids, $ids);
+			} elseif ($department->order_units) {
+				$ids = $units->whereIn('id', $department->order_units)->pluck('id')->toArray();
+				$order_units_ids = array_merge($order_units_ids, $ids);
+			}
+
+			if ($department->petition_all_units) {
+				$ids = $units->pluck('id')->toArray();
+				$petition_units_ids = array_merge($petition_units_ids, $ids);
+			} elseif ($department->petition_blocks) {
+				$ids = $units->whereIn('block_id', $department->petition_blocks)->pluck('id')->toArray();
+				$petition_units_ids = array_merge($petition_units_ids, $ids);
+			} elseif ($department->petition_floors) {
+				$ids = $units->whereIn('floor_id', $department->petition_floors)->pluck('id')->toArray();
+				$petition_units_ids = array_merge($petition_units_ids, $ids);
+			} elseif ($department->petition_units) {
+				$ids = $units->whereIn('id', $department->petition_units)->pluck('id')->toArray();
+				$petition_units_ids = array_merge($petition_units_ids, $ids);
+			}
+		}
+
+		$order_units_ids = array_unique($order_units_ids);
+		$petition_units_ids = array_unique($petition_units_ids);
+
+		$this->order_units()->sync($order_units_ids);
+		$this->petition_units()->sync($petition_units_ids);
+
+		return $this;
 	}
 }

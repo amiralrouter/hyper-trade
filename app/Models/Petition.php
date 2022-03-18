@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Wallet extends Model
+class Petition extends Model
 {
 	protected $attributes = [
 		'business_id' => null, // [type:integer, model:Business] Business ID
-		'unit_id' => null, // [type:integer, model:UnitType] Unit Type ID
-
-		'is_active' => true, // [type:boolean] Is Active
+		'unit_id' => null, // [type:integer, model:Unit] Unit ID
+		'demand_id' => null, // [type:integer, model:Demand] Demand ID
 	];
 
 	protected $casts = [
 		'business_id' => 'integer',
 		'unit_id' => 'integer',
-		'is_active' => 'boolean',
+		'demand_id' => 'integer',
 	];
 
 	protected $appends = [];
@@ -24,14 +23,4 @@ class Wallet extends Model
 	protected $guarded = [];
 
 	protected $hidden = [];
-
-	public function business()
-	{
-		return $this->belongsTo(Business::class);
-	}
-
-	public function unit()
-	{
-		return $this->belongsTo(Unit::class);
-	}
 }

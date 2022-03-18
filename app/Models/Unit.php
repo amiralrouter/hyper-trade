@@ -21,8 +21,6 @@ class Unit extends Model
 
 		'pin' => '', // [type:string, max:6] PIN
 
-		'wallet_id' => null, // [type:integer, model:Wallet, nullable] Wallet ID
-
 		'is_active' => true, // [type:boolean] Is Active
 	];
 
@@ -32,7 +30,6 @@ class Unit extends Model
 		'floor_id' => 'integer',
 		'unit_type_id' => 'integer',
 		'pin' => 'string',
-		'wallet_id' => 'integer',
 		'is_active' => 'boolean',
 	];
 
@@ -42,29 +39,29 @@ class Unit extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'created' => \App\Events\UnitCreated::class,
-		'deleting' => \App\Events\UnitDeleting::class,
-		'updated' => \App\Events\UnitUpdated::class,
-	];
+	// protected $dispatchesEvents = [
+	// 	'created' => \App\Events\UnitCreated::class,
+	// 	'deleting' => \App\Events\UnitDeleting::class,
+	// 	'updated' => \App\Events\UnitUpdated::class,
+	// ];
 
-	protected static function boot(): void
-	{
-		parent::boot();
-		static::saving(function ($unit): void {
-			$floor_id = $unit->floor_id;
-			$floor = Floor::find($floor_id);
+	// protected static function boot(): void
+	// {
+	// 	parent::boot();
+	// 	static::saving(function ($unit): void {
+	// 		$floor_id = $unit->floor_id;
+	// 		$floor = Floor::find($floor_id);
 
-			if ($floor) {
-				$block_id = $floor->block_id;
-				$block = Block::find($block_id);
+	// 		if ($floor) {
+	// 			$block_id = $floor->block_id;
+	// 			$block = Block::find($block_id);
 
-				if ($block) {
-					$unit->block_id = $block_id;
-				}
-			}
-		});
-	}
+	// 			if ($block) {
+	// 				$unit->block_id = $block_id;
+	// 			}
+	// 		}
+	// 	});
+	// }
 
 	public function business()
 	{
@@ -88,7 +85,12 @@ class Unit extends Model
 
 	public function wallet()
 	{
-		return $this->belongsTo(Wallet::class);
+		return $this->belongsTo(Wallet::class)->where('is_active', true);
+	}
+
+	public function wallets()
+	{
+		return $this->hasMany(Wallet::class);
 	}
 
 	public function menus()
@@ -106,13 +108,98 @@ class Unit extends Model
 		return $this->belongsToMany(User::class, 'unit_order_user', 'unit_id', 'user_id');
 	}
 
-	public function demand_users()
+	public function petition_users()
 	{
-		return $this->belongsToMany(User::class, 'unit_demand_user', 'unit_id', 'user_id');
+		return $this->belongsToMany(User::class, 'unit_petition_user', 'unit_id', 'user_id');
 	}
 
-	public function reset(): void
+	public function reset()
 	{
-		event(new \App\Events\UnitReset($this));
+		// event(new \App\Events\UnitReset($this));
+		$this->resetPin();
+		$this->dropWallet();
+		$this->createWallet();
+
+		return $this;
+	}
+
+	public function resetPin()
+	{
+		$this->pin = random_int(100000, 999999);
+
+		return $this;
+	}
+
+	public function dropWallet()
+	{
+		$wallet = $this->wallet;
+		if ($wallet) {
+			$wallet->is_active = false;
+			$wallet->save();
+		}
+
+		return $this;
+	}
+
+	public function createWallet()
+	{
+		$wallet = new Wallet();
+		$wallet->business_id = $this->business_id;
+		$wallet->unit_id = $this->id;
+		$wallet->save();
+
+		return $this;
+	}
+
+	public function syncUsers()
+	{
+		$departments = Department::where('business_id', $this->business_id)->get();
+
+		// ORDERS
+		$related_departments = [];
+		foreach ($departments as $department) {
+			if ($department->order_all_units) {
+				$related_departments[] = $department;
+			} elseif (\in_array($this->id, (array) $department->order_units, true)) {
+				$related_departments[] = $department;
+			} elseif (\in_array($this->block_id, (array) $department->orders_blocks, true)) {
+				$related_departments[] = $department;
+			} elseif (\in_array($this->floor_id, (array) $department->orders_floors, true)) {
+				$related_departments[] = $department;
+			}
+		}
+		$this->order_users()->detach();
+		foreach ($related_departments as $department) {
+			foreach ($department->users as $user) {
+				$this->order_users()->attach($user->id);
+			}
+		}
+
+		// DEMANDS
+		$related_departments = [];
+		foreach ($departments as $department) {
+			if ($department->petition_all_units) {
+				$related_departments[] = $department;
+			} elseif (\in_array($this->id, (array) $department->petition_units, true)) {
+				$related_departments[] = $department;
+			} elseif (\in_array($this->block_id, (array) $department->petition_blocks, true)) {
+				$related_departments[] = $department;
+			} elseif (\in_array($this->floor_id, (array) $department->petition_floors, true)) {
+				$related_departments[] = $department;
+			}
+		}
+		$this->petition_users()->detach();
+		foreach ($related_departments as $department) {
+			foreach ($department->users as $user) {
+				$this->petition_users()->attach($user->id);
+			}
+		}
+
+		return $this;
+	}
+
+	public function syncProducts()
+	{
+		return $this;
 	}
 }

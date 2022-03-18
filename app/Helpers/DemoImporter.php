@@ -206,7 +206,6 @@ class DemoImporter
 
 			$material_ids = [];
 			foreach ($item->material as $row) {
-				echo $row['id'] . PHP_EOL;
 				$material_ids[] = $materials[(string) $row['id']]->id;
 			}
 
@@ -227,57 +226,58 @@ class DemoImporter
 			$product->menus()->sync($menu_ids);
 			$products[$id] = $product;
 			// call product updated event
-			event(new \App\Events\ProductUpdated($product));
+			$product->syncUnits();
 		}
 
 		// departments
 		$departments = [];
 		foreach ($this->data->departments->department as $item) {
+			$id = (string) $item['id'];
 			$name = (string) $item['name'];
-			$order_related_all_units = ((string) $item['order_related_all_units'] ?? '') === 'true';
-			$order_related_blocks = [];
-			$order_related_floors = [];
-			$order_related_units = [];
+			$order_all_units = ((string) $item['order_all_units'] ?? '') === 'true';
+			$order_blocks = [];
+			$order_floors = [];
+			$order_units = [];
 
-			$demand_related_all_units = ((string) $item['demand_related_all_units'] ?? '') === 'true';
-			$demand_related_blocks = [];
-			$demand_related_floors = [];
-			$demand_related_units = [];
+			$petition_all_units = ((string) $item['petition_all_units'] ?? '') === 'true';
+			$petition_blocks = [];
+			$petition_floors = [];
+			$petition_units = [];
 
-			foreach ($item->order_related_block_id as $id) {
-				$order_related_blocks[] = $blocks[(int) $id]->id;
+			foreach ($item->order_block_id as $id) {
+				$order_blocks[] = $blocks[(int) $id]->id;
 			}
-			foreach ($item->order_related_floor_id as $id) {
-				$order_related_floors[] = $floors[(int) $id]->id;
+			foreach ($item->order_floor_id as $id) {
+				$order_floors[] = $floors[(int) $id]->id;
 			}
-			foreach ($item->order_related_unit_id as $id) {
-				$order_related_units[] = $units[(int) $id]->id;
+			foreach ($item->order_unit_id as $id) {
+				$order_units[] = $units[(int) $id]->id;
 			}
 
-			foreach ($item->demand_related_block_id as $id) {
-				$demand_related_blocks[] = $blocks[(int) $id]->id;
+			foreach ($item->petition_block_id as $id) {
+				$petition_blocks[] = $blocks[(int) $id]->id;
 			}
-			foreach ($item->demand_related_floor_id as $id) {
-				$demand_related_floors[] = $floors[(int) $id]->id;
+			foreach ($item->petition_floor_id as $id) {
+				$petition_floors[] = $floors[(int) $id]->id;
 			}
-			foreach ($item->demand_related_unit_id as $id) {
-				$demand_related_units[] = $units[(int) $id]->id;
+			foreach ($item->petition_unit_id as $id) {
+				$petition_units[] = $units[(int) $id]->id;
 			}
 
 			$department = new Department();
 			$department->business_id = $business_id;
 			$department->name = (string) $name;
-			$department->order_related_all_units = $order_related_all_units;
-			$department->order_related_blocks = $order_related_blocks;
-			$department->order_related_floors = $order_related_floors;
-			$department->order_related_units = $order_related_units;
-			$department->demand_related_all_units = $demand_related_all_units;
-			$department->demand_related_blocks = $demand_related_blocks;
-			$department->demand_related_floors = $demand_related_floors;
-			$department->demand_related_units = $demand_related_units;
+			$department->order_all_units = $order_all_units;
+			$department->order_blocks = $order_blocks;
+			$department->order_floors = $order_floors;
+			$department->order_units = $order_units;
+			$department->petition_all_units = $petition_all_units;
+			$department->petition_blocks = $petition_blocks;
+			$department->petition_floors = $petition_floors;
+			$department->petition_units = $petition_units;
 
 			$department->save();
-			$departments[(string) $name] = $department;
+			$departments[$id] = $department;
 		}
 
 		// users
@@ -295,12 +295,11 @@ class DemoImporter
 				'related_with_all_units' => $related_with_all_units,
 			]);
 			$department_ids = [];
-			foreach ($item->department as $key) {
-				if (isset($departments[(string) $key])) {
-					$department_ids[] = $departments[(string) $key]->id;
-				}
+			foreach ($item->department as $row) {
+				$department_ids[] = $departments[(string) $row['id']]->id;
 			}
 			$user->departments()->sync($department_ids);
+			$user->syncUnits();
 		}
 	}
 }

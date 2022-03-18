@@ -675,7 +675,7 @@
     </products>
 
     <departments>
-        <department id="1" order_all_units="true" demand_all_units="true">
+        <department id="1" order_all_units="true" petition_all_units="true">
             <name>
                 <en>Director</en>
                 <tr>Yönetici</tr>
@@ -687,36 +687,17 @@
                 <tr>Temizlikçi</tr>
             </name>
         </department> 
-        <department id="3">
+        <department id="3" order_all_units="true">
             <name>
-                <en>Main Building Restaurant Waiters</en>
-                <tr>Ana Bina Restoran Garsonları</tr>
+                <en>Bar</en>
+                <tr>Bar</tr>
             </name>
-        </department>
-        <department id="4">
-            <name>
-                <en>Secondary Building Restaurant Waiters</en>
-                <tr>Ek Bina Restoran Garsonları</tr>
-            </name>
-        </department>
-        <department id="5">
-            <name>
-                <en>Main Building Restaurant Waiters</en>
-                <tr>Ana Bina Restoran Garsonları</tr>
-            </name>
-        </department>
-        <department id="6">
-            <name>
-                <en>Secondary Building Restaurant Waiters</en>
-                <tr>Ek Bina Restoran Garsonları</tr>
-            </name>
-        </department>
+        </department> 
     </departments>
 
     <users>
         <user firstname="İsmail" lastname="Keser" username="ismail">
-            <department>Mutfak</department>
-            <department>Bar</department>
+            <department id="3"></department> 
         </user>
     </users>
 

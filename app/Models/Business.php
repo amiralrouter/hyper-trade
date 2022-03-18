@@ -23,10 +23,6 @@ class Business extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'created' => \App\Events\BusinessCreated::class,
-	];
-
 	public function language()
 	{
 		return $this->belongsTo(Language::class);
@@ -70,5 +66,20 @@ class Business extends Model
 	public function products()
 	{
 		return $this->hasMany(Product::class);
+	}
+
+	public function demands()
+	{
+		return $this->hasMany(Demand::class);
+	}
+
+	public function orders()
+	{
+		return $this->hasMany(Order::class);
+	}
+
+	public function users()
+	{
+		return $this->hasMany(User::class);
 	}
 }

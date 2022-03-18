@@ -23,10 +23,10 @@ class Department extends Model
 		'order_floors' => '[]', // [type:array, dbType:json] Floors IDs
 		'order_units' => '[]', // [type:array, dbType:json] Units IDs
 
-		'demand_all_units' => false, // [type:boolean] Demand all units
-		'demand_blocks' => '[]', // [type:array, dbType:json] Blocks IDs
-		'demand_floors' => '[]', // [type:array, dbType:json] Floors IDs
-		'demand_units' => '[]', // [type:array, dbType:json] Units IDs
+		'petition_all_units' => false, // [type:boolean] Petition all units
+		'petition_blocks' => '[]', // [type:array, dbType:json] Blocks IDs
+		'petition_floors' => '[]', // [type:array, dbType:json] Floors IDs
+		'petition_units' => '[]', // [type:array, dbType:json] Units IDs
 
 		'slug' => null, // [type:string, max:128, nullable] Slug
 	];
@@ -39,10 +39,10 @@ class Department extends Model
 		'order_blocks' => 'array',
 		'order_floors' => 'array',
 		'order_units' => 'array',
-		'demand_all_units' => 'boolean',
-		'demand_blocks' => 'array',
-		'demand_floors' => 'array',
-		'demand_units' => 'array',
+		'petition_all_units' => 'boolean',
+		'petition_blocks' => 'array',
+		'petition_floors' => 'array',
+		'petition_units' => 'array',
 		'slug' => 'string',
 	];
 
@@ -52,8 +52,13 @@ class Department extends Model
 
 	protected $hidden = [];
 
+	public function business()
+	{
+		return $this->belongsTo(Business::class);
+	}
+
 	public function users()
 	{
-		return $this->hasMany(User::class);
+		return $this->belongsToMany(User::class);
 	}
 }

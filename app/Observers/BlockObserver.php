@@ -32,6 +32,7 @@ class BlockObserver
 
 	public function deleting(Block $block): void
 	{
+		echo 'block deleting' . PHP_EOL;
 		$floors = $block->floors;
 		foreach ($floors as $floor) {
 			$floor->delete();

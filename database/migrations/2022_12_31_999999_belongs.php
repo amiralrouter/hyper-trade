@@ -46,7 +46,7 @@ return new class() extends Migration {
 			$table->foreignId('unit_id')->constrained();
 			$table->foreignId('user_id')->constrained();
 		});
-		Schema::create('unit_demand_user', function (Blueprint $table): void {
+		Schema::create('unit_petition_user', function (Blueprint $table): void {
 			$table->bigIncrements('id');
 			$table->foreignId('unit_id')->constrained();
 			$table->foreignId('user_id')->constrained();
@@ -73,7 +73,7 @@ return new class() extends Migration {
 		Schema::dropIfExists('department_user');
 
 		Schema::dropIfExists('unit_order_user');
-		Schema::dropIfExists('unit_demand_user');
+		Schema::dropIfExists('unit_petition_user');
 
 		Schema::dropIfExists('order_user');
 	}

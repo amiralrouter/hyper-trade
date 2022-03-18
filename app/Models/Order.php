@@ -27,8 +27,4 @@ class Order extends Model
 	protected $guarded = [];
 
 	protected $hidden = [];
-
-	protected $dispatchesEvents = [
-		'created' => \App\Events\OrderCreated::class,
-	];
 }

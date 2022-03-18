@@ -18,7 +18,6 @@ return new class() extends Migration {
 			$table->foreignId('floor_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Floor ID');
 			$table->foreignId('unit_type_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Unit Type ID');
 			$table->string('pin')->comment('PIN');
-			$table->foreignId('wallet_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Wallet ID');
 			$table->boolean('is_active')->comment('Is Active');
 			$table->timestamps();
 		});
