@@ -17,6 +17,7 @@ class UnitObserver
 	{
 		$unit->createWallet();
 		$unit->syncUsers();
+		$unit->syncMenus();
 		$unit->syncProducts();
 	}
 
@@ -27,6 +28,7 @@ class UnitObserver
 	public function updated(Unit $unit): void
 	{
 		$unit->syncUsers();
+		$unit->syncMenus();
 		$unit->syncProducts();
 	}
 
@@ -51,8 +53,6 @@ class UnitObserver
 
 	public function deleting(Unit $unit): void
 	{
-		echo 'unit deleting' . PHP_EOL;
-
 		$wallets = $unit->wallets;
 		if ($wallets) {
 			foreach ($wallets as $wallet) {

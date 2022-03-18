@@ -160,34 +160,32 @@ class DemoImporter
 		foreach ($this->data->menus->menu as $item) {
 			$id = (string) $item['id'];
 			$name = $this->getTranslates($item, 'name');
-			$menus[$id] = Menu::create([
-				'business_id' => $business_id,
-				'name' => $name,
-			]);
 
+			$all_blocks = ((string) $item['all_blocks'] ?? '') === 'true';
+			$all_units = ((string) $item['all_units'] ?? '') === 'true';
 			$block_ids = [];
+			$floor_ids = [];
+			$unit_ids = [];
 			foreach ($item->block as $row) {
 				$block_ids[] = $blocks[(string) $row['id']]->id;
 			}
-			$floor_ids = [];
 			foreach ($item->floor as $row) {
 				$floor_ids[] = $floors[(string) $row['id']]->id;
 			}
-			$unit_ids = [];
 			foreach ($item->unit as $row) {
 				$unit_ids[] = $units[(string) $row['id']]->id;
 			}
-			foreach ($block_ids as $block_id) {
-				$block = Block::find($block_id);
-				$unit_ids = array_merge($unit_ids, $block->units->pluck('id')->toArray());
-			}
-			foreach ($floor_ids as $floor_id) {
-				$floor = Floor::find($floor_id);
-				$unit_ids = array_merge($unit_ids, $floor->units->pluck('id')->toArray());
-			}
-			$unit_ids = array_unique($unit_ids);
-			// set menu units by unit ids
-			$menus[$id]->units()->sync($unit_ids);
+			$menu = Menu::create([
+				'business_id' => $business_id,
+				'name' => $name,
+				'all_blocks' => $all_blocks,
+				'block_ids' => $block_ids,
+				'floor_ids' => $floor_ids,
+				'all_units' => $all_units,
+				'unit_ids' => $unit_ids,
+			]);
+
+			$menus[$id] = $menu;
 		}
 
 		// products

@@ -12,6 +12,7 @@ class MenuObserver
 
 	public function created(Menu $menu): void
 	{
+		$menu->syncUnits();
 	}
 
 	public function updating(Menu $menu): void
@@ -20,6 +21,7 @@ class MenuObserver
 
 	public function updated(Menu $menu): void
 	{
+		$menu->syncUnits();
 	}
 
 	public function saving(Menu $menu): void

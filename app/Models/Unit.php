@@ -198,6 +198,17 @@ class Unit extends Model
 		return $this;
 	}
 
+	public function syncMenus()
+	{
+		$menus = Menu::where('business_id', $this->business_id)->get();
+
+		foreach ($menus as $menu) {
+			$menu->syncUnits();
+		}
+
+		return $this;
+	}
+
 	public function syncProducts()
 	{
 		return $this;

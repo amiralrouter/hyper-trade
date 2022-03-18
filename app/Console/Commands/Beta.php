@@ -6,6 +6,7 @@ use App\Models\Business;
 use App\Helpers\DemoImporter;
 use Illuminate\Console\Command;
 use App\Helpers\BusinessBuilder;
+use Illuminate\Support\Facades\DB;
 
 class Beta extends Command
 {
@@ -28,8 +29,11 @@ class Beta extends Command
 			$business->delete();
 		}
 
+		DB::update('ALTER TABLE businesses AUTO_INCREMENT = 1001;');
+		DB::update('ALTER TABLE units AUTO_INCREMENT = 1;');
+
 		$business_builder = new BusinessBuilder();
-		$business_builder->setName('Gloria Jeans');
+		$business_builder->setName('A Hotel');
 		$business_builder->setLanguageId(1);
 		$business_builder->setRoomCount(0);
 		$business_builder->setDeskCount(0);

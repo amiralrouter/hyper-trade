@@ -18,10 +18,10 @@ return new class extends Migration
 			$table->json('name')->default('{}');
 			$table->foreignId('business_id')->constrained()->onDelete('cascade')->onUpdate('cascade')->comment('Business ID');
 			$table->boolean('all_blocks');
-			$table->json('blocks')->default('[]')->comment('Blocks');
-			$table->json('floors')->default('[]')->comment('Floors');
+			$table->json('block_ids')->default('[]')->comment('Blocks');
+			$table->json('floor_ids')->default('[]')->comment('Floors');
 			$table->boolean('all_units');
-			$table->json('units')->default('[]')->comment('Units');
+			$table->json('unit_ids')->default('[]')->comment('Units');
 			$table->string('slug')->nullable()->comment('Slug');
 			$table->boolean('is_active')->comment('Is active');
 			$table->timestamps();
