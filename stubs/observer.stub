@@ -6,58 +6,59 @@ use {{ namespacedModel }};
 
 class {{ class }}
 {
-    /**
-     * Handle the {{ model }} "created" event.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return void
-     */
+ 
+    public function creating({{ model }} ${{ modelVariable }})
+    {
+
+    }
+ 
     public function created({{ model }} ${{ modelVariable }})
     {
-        //
-    }
 
-    /**
-     * Handle the {{ model }} "updated" event.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return void
-     */
+    }
+ 
+    public function updating({{ model }} ${{ modelVariable }})
+    {
+
+    }
+ 
     public function updated({{ model }} ${{ modelVariable }})
     {
-        //
-    }
 
-    /**
-     * Handle the {{ model }} "deleted" event.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return void
-     */
+    }
+ 
+    public function saving({{ model }} ${{ modelVariable }})
+    {
+
+    }
+ 
+    public function saved({{ model }} ${{ modelVariable }})
+    {
+
+    }
+ 
+    public function deleting({{ model }} ${{ modelVariable }})
+    {
+
+    }
+ 
     public function deleted({{ model }} ${{ modelVariable }})
     {
-        //
-    }
 
-    /**
-     * Handle the {{ model }} "restored" event.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return void
-     */
+    }
+ 
+    public function restoring({{ model }} ${{ modelVariable }})
+    {
+
+    }
+ 
     public function restored({{ model }} ${{ modelVariable }})
     {
-        //
-    }
 
-    /**
-     * Handle the {{ model }} "force deleted" event.
-     *
-     * @param  \{{ namespacedModel }}  ${{ modelVariable }}
-     * @return void
-     */
+    }
+ 
     public function forceDeleted({{ model }} ${{ modelVariable }})
     {
-        //
+
     }
 }

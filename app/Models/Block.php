@@ -27,9 +27,12 @@ class Block extends Model
 
 	protected $hidden = [];
 
-	protected $dispatchesEvents = [
-		'deleting' => \App\Events\BlockDeleting::class,
-	];
+	// protected $dispatchesHooks = [
+	// 	'deleting' => \App\Hooks\BlockDeleting::class,
+	// ];
+	// protected $dispatchesEvents = [
+	// 	'deleting' => \App\Events\BlockDeleting::class,
+	// ];
 
 	public function business()
 	{

@@ -45,13 +45,13 @@ class EventServiceProvider extends ServiceProvider
 		BusinessCreated::class => [
 		],
 		// BLOCK EVENTS
-		BlockDeleting::class => [
-			\App\Listeners\BlockDeleteFloors::class,
-		],
+		// BlockDeleting::class => [
+		// 	\App\Listeners\BlockDeleteFloors::class,
+		// ],
 		// FLOOR EVENTS
-		FloorDeleting::class => [
-			\App\Listeners\FloorDetachUnits::class,
-		],
+		// FloorDeleting::class => [
+		// 	\App\Listeners\FloorDetachUnits::class,
+		// ],
 		// UNIT EVENTS
 		UnitCreated::class => [
 			\App\Listeners\UnitCreatePin::class,
