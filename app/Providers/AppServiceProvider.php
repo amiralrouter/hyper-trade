@@ -28,6 +28,7 @@ use App\Observers\CategoryObserver;
 use App\Observers\MaterialObserver;
 use App\Observers\DepartmentObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot(): void
 	{
+		Validator::extend(
+			'recaptcha',
+			'App\\Validators\\ReCaptcha@validate'
+		);
+
 		Block::observe(BlockObserver::class);
 		Business::observe(BusinessObserver::class);
 		Category::observe(CategoryObserver::class);

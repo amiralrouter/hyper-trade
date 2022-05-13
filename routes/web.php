@@ -15,8 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
+Route::group(['prefix' => 'admin'], function (): void {
+	Route::group(['prefix' => 'auth'], function (): void {
+		Route::get('/signin', [App\Http\Controllers\Admin\AuthController::class, 'signin'])->name('admin.auth.signin');
+		Route::get('/signup', [App\Http\Controllers\Admin\AuthController::class, 'signup'])->name('admin.auth.signup');
+		Route::get('/password_request', [App\Http\Controllers\Admin\AuthController::class, 'signup'])->name('admin.auth.password_request');
+	});
+	Route::group(['middleware' => 'auth.admin'], function (): void {
+		Route::get('/', [App\Http\Controllers\Admin\BusinessController::class, 'list'])->name('admin.business.list');
+	});
+});
+
+Route::group(['prefix' => 'office'], function (): void {
+	Route::group(['prefix' => 'auth'], function (): void {
+		Route::get('/login', [App\Http\Controllers\Office\AuthController::class, 'login'])->name('office.auth.login');
+		Route::get('/token', [App\Http\Controllers\Office\AuthController::class, 'token'])->name('office.auth.token');
+	});
+	Route::group(['middleware' => 'auth.office'], function (): void {
+		// Route::get('/', [App\Http\Controllers\Office\HomeController::class, 'index'])->name('office.home.index');
+	});
 });
 
 // group by /b
@@ -30,4 +47,15 @@ Route::group(['prefix' => 'b/{business:id}/u/{unit:id}'], function (): void {
 
 		return $unit->menus;
 	});
+});
+
+Route::get('/bakery', [App\Http\Controllers\Bakery\BakeryController::class, 'index']);
+Route::get('/bakery/editor', [App\Http\Controllers\Bakery\BakeryController::class, 'editor']);
+
+Route::get('/ui/{page}', function () {
+	return view('ui.' . request()->route('page'));
+});
+
+Route::get('/', function () {
+	return view('welcome');
 });
