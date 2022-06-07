@@ -22,8 +22,11 @@ Route::group(['prefix' => 'admin'], function (): void {
 		Route::get('/password_request', [App\Http\Controllers\Admin\AuthController::class, 'signup'])->name('admin.auth.password_request');
 	});
 	Route::group(['middleware' => 'auth.admin'], function (): void {
-		Route::get('/', [App\Http\Controllers\Admin\BusinessController::class, 'list'])->name('admin.business.list');
+		// Route::get('/', [App\Http\Controllers\Admin\BusinessController::class, 'list'])->name('admin.business.list');
 	});
+	Route::get('/', [App\Http\Controllers\Admin\BusinessController::class, 'list'])->name('admin.business.list');
+	Route::get('/block', [App\Http\Controllers\Admin\BlockController::class, 'list'])->name('admin.block.list');
+	Route::get('/floor', [App\Http\Controllers\Admin\FloorController::class, 'list'])->name('admin.floor.list');
 });
 
 Route::group(['prefix' => 'office'], function (): void {
